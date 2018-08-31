@@ -2,12 +2,14 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.SpaServices.ReactDevelopmentServer;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using MoviePremieres.Domain.Interfaces;
 using MoviePremieres.Domain.Repositories;
 using MoviePremieres.Domain.Services;
-using MoviePremieres.Repositories.List;
+using MoviePremieres.EFRepositories;
+using MoviePremieres.EFRepositories.List;
 
 namespace MoviePremieres
 {
@@ -40,6 +42,10 @@ namespace MoviePremieres
         private void RegistereRepositories(IServiceCollection services)
         {
             services.AddTransient<IMoviesRepository, MoviesRepository>();
+
+            services
+                .AddEntityFrameworkSqlServer()
+                .AddDbContext<DataContext>(options => options.UseSqlServer("Data Source=localhost\\SQL2017;Initial Catalog=Movies;Integrated Security=true;"));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

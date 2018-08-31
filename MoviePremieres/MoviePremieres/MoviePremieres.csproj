@@ -21,8 +21,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\MoviePremieres.AzureRepositories\MoviePremieres.AzureRepositories.csproj" />
     <ProjectReference Include="..\MoviePremieres.Domain\MoviePremieres.Domain.csproj" />
-    <ProjectReference Include="..\MoviePremieres.Repositories\MoviePremieres.Repositories.csproj" />
+    <ProjectReference Include="..\MoviePremieres.EFRepositories\MoviePremieres.EFRepositories.csproj" />
+    <ProjectReference Include="..\MoviePremieres.ListRepositories\MoviePremieres.ListRepositories.csproj" />
   </ItemGroup>
 
   <Target Name="DebugEnsureNodeEnv" BeforeTargets="Build" Condition=" '$(Configuration)' == 'Debug' And !Exists('$(SpaRoot)node_modules') ">
@@ -49,5 +51,21 @@
       </ResolvedFileToPublish>
     </ItemGroup>
   </Target>
+
+  <PropertyGroup Condition="'$(Configuration)' == 'Debug'">
+    <TypeScriptTarget>ES2015</TypeScriptTarget>
+    <TypeScriptJSXEmit>None</TypeScriptJSXEmit>
+    <TypeScriptModuleKind>ES6</TypeScriptModuleKind>
+    <TypeScriptCompileOnSaveEnabled>True</TypeScriptCompileOnSaveEnabled>
+    <TypeScriptNoImplicitAny>False</TypeScriptNoImplicitAny>
+    <TypeScriptRemoveComments>False</TypeScriptRemoveComments>
+    <TypeScriptOutFile />
+    <TypeScriptOutDir />
+    <TypeScriptGeneratesDeclarations>False</TypeScriptGeneratesDeclarations>
+    <TypeScriptNoEmitOnError>True</TypeScriptNoEmitOnError>
+    <TypeScriptSourceMap>True</TypeScriptSourceMap>
+    <TypeScriptMapRoot />
+    <TypeScriptSourceRoot />
+  </PropertyGroup>
 
 </Project>

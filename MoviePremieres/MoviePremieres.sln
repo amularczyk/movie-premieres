@@ -5,9 +5,13 @@ VisualStudioVersion = 15.0.27703.2042
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MoviePremieres", "MoviePremieres\MoviePremieres.csproj", "{D4DF5561-27AD-4177-B22A-8741CBFE8593}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MoviePremieres.Domain", "MoviePremieres.Domain\MoviePremieres.Domain.csproj", "{BF884F1D-48DF-4C60-B238-594FF65AD0E6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MoviePremieres.Domain", "MoviePremieres.Domain\MoviePremieres.Domain.csproj", "{BF884F1D-48DF-4C60-B238-594FF65AD0E6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MoviePremieres.Repositories", "MoviePremieres.Repositories\MoviePremieres.Repositories.csproj", "{0C892677-AB40-41D9-948E-ECC1B466B55D}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MoviePremieres.ListRepositories", "MoviePremieres.ListRepositories\MoviePremieres.ListRepositories.csproj", "{27088D0E-92DD-40A8-9BFF-3ED5AF209D60}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MoviePremieres.EFRepositories", "MoviePremieres.EFRepositories\MoviePremieres.EFRepositories.csproj", "{B11FD1CB-2536-4B2B-A9EC-E248CB053FBB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MoviePremieres.AzureRepositories", "MoviePremieres.AzureRepositories\MoviePremieres.AzureRepositories.csproj", "{CC6C5871-599B-4415-8F1E-C401F2F16F8A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -23,10 +27,18 @@ Global
 		{BF884F1D-48DF-4C60-B238-594FF65AD0E6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BF884F1D-48DF-4C60-B238-594FF65AD0E6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BF884F1D-48DF-4C60-B238-594FF65AD0E6}.Release|Any CPU.Build.0 = Release|Any CPU
-		{0C892677-AB40-41D9-948E-ECC1B466B55D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{0C892677-AB40-41D9-948E-ECC1B466B55D}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{0C892677-AB40-41D9-948E-ECC1B466B55D}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{0C892677-AB40-41D9-948E-ECC1B466B55D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{27088D0E-92DD-40A8-9BFF-3ED5AF209D60}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{27088D0E-92DD-40A8-9BFF-3ED5AF209D60}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{27088D0E-92DD-40A8-9BFF-3ED5AF209D60}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{27088D0E-92DD-40A8-9BFF-3ED5AF209D60}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B11FD1CB-2536-4B2B-A9EC-E248CB053FBB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B11FD1CB-2536-4B2B-A9EC-E248CB053FBB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B11FD1CB-2536-4B2B-A9EC-E248CB053FBB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B11FD1CB-2536-4B2B-A9EC-E248CB053FBB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CC6C5871-599B-4415-8F1E-C401F2F16F8A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CC6C5871-599B-4415-8F1E-C401F2F16F8A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CC6C5871-599B-4415-8F1E-C401F2F16F8A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CC6C5871-599B-4415-8F1E-C401F2F16F8A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

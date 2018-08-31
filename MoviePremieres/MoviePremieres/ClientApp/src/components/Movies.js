@@ -1,23 +1,23 @@
 import React, { Component } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import { Link } from 'react-router-dom';
 import { actionCreators } from '../store/MoviesStore';
 
 class Movies extends Component {
-  componentWillMount() {
-    this.props.requestMovies();
-  }
+    componentWillMount() {
+        this.props.requestMovies();
+    }
 
-  render() {
-    return (
-      <div>
-        <h1>Movies premieres</h1>
-        <p>This component contains movies premieres</p>
-        {renderMoviesTable(this.props)}
-      </div>
-    );
-  }
+    render() {
+        return (
+            <div>
+                <h1>Movies premieres</h1>
+                <button onClick={() => { this.props.addNewMovie({title: "Movie 1"})}}>Add new movie</button>
+                <p>This component contains movies premieres</p>
+                {renderMoviesTable(this.props)}
+            </div>
+        );
+    }
 }
 
 function renderMoviesTable(props) {

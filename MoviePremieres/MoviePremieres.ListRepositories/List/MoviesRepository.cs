@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using MoviePremieres.Domain.Models;
 using MoviePremieres.Domain.Repositories;
 
-namespace MoviePremieres.Repositories.List
+namespace MoviePremieres.ListRepositories.List
 {
     public class MoviesRepository : IMoviesRepository
     {
