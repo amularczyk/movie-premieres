@@ -2,53 +2,52 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.SpaServices.ReactDevelopmentServer;
-using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using MoviePremieres.Domain.Interfaces;
-using MoviePremieres.Domain.Repositories;
 using MoviePremieres.Domain.Services;
 using MoviePremieres.EFRepositories;
-using MoviePremieres.EFRepositories.List;
+using MoviePremieres.ListRepositories;
 
 namespace MoviePremieres
 {
     public class Startup
     {
-        public Startup(IConfiguration configuration)
+        public Startup(IHostingEnvironment env)
         {
-            Configuration = configuration;
+            var builder = new ConfigurationBuilder()
+                .SetBasePath(env.ContentRootPath)
+                .AddJsonFile("appsettings.json", true, true)
+                .AddJsonFile("appsettings.local.json", true, true)
+                .AddEnvironmentVariables();
+
+            Configuration = builder.Build();
         }
 
         public IConfiguration Configuration { get; }
 
-        // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
 
-            RegistereServices(services);
-            RegistereRepositories(services);
+            RegisterServices(services);
+            RegisterRepositories(services);
 
             // In production, the React files will be served from this directory
             services.AddSpaStaticFiles(configuration => { configuration.RootPath = "ClientApp/build"; });
         }
 
-        private void RegistereServices(IServiceCollection services)
+        private void RegisterServices(IServiceCollection services)
         {
             services.AddTransient<IMoviesService, MoviesService>();
         }
 
-        private void RegistereRepositories(IServiceCollection services)
+        private void RegisterRepositories(IServiceCollection services)
         {
-            services.AddTransient<IMoviesRepository, MoviesRepository>();
-
-            services
-                .AddEntityFrameworkSqlServer()
-                .AddDbContext<DataContext>(options => options.UseSqlServer("Data Source=localhost\\SQL2017;Initial Catalog=Movies;Integrated Security=true;"));
+            //services.RegisterListRepositories();
+            services.RegisterEFRepositories(Configuration);
         }
 
-        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
             if (env.IsDevelopment())

@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using MoviePremieres.Domain.Interfaces;
 using MoviePremieres.Domain.Models;
 using MoviePremieres.Domain.Repositories;
@@ -21,6 +22,7 @@ namespace MoviePremieres.Domain.Services
 
         public void Add(Movie movie)
         {
+            movie.Premiere = DateTimeOffset.Now;
             _moviesRepository.Create(movie);
         }
     }
