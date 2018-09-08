@@ -18,6 +18,12 @@ namespace MoviePremieres.EFRepositories
             services
                 .AddEntityFrameworkSqlServer()
                 .AddDbContext<DataContext>(options => options.UseSqlServer(connectionString));
+
+            var serviceProvider = services.BuildServiceProvider();
+
+            var dataContext = serviceProvider.GetService<DataContext>();
+
+            dataContext.Database.Migrate();
         }
     }
 }
