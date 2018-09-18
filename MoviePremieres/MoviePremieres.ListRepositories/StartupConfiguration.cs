@@ -1,6 +1,6 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using MoviePremieres.Domain.Repositories;
-using MoviePremieres.ListRepositories.List;
+using MoviePremieres.ListRepositories.Repositories;
 
 namespace MoviePremieres.ListRepositories
 {

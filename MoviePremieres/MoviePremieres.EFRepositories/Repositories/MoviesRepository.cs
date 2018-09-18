@@ -3,7 +3,7 @@ using System.Linq;
 using MoviePremieres.Domain.Models;
 using MoviePremieres.Domain.Repositories;
 
-namespace MoviePremieres.EFRepositories.List
+namespace MoviePremieres.EFRepositories.Repositories
 {
     public class MoviesRepository : IMoviesRepository
     {

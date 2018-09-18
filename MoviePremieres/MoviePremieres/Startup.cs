@@ -8,6 +8,7 @@ using MoviePremieres.Domain.Interfaces;
 using MoviePremieres.Domain.Services;
 using MoviePremieres.EFRepositories;
 using MoviePremieres.ListRepositories;
+using MoviePremieres.AzureRepositories;
 
 namespace MoviePremieres
 {
@@ -45,7 +46,8 @@ namespace MoviePremieres
         private void RegisterRepositories(IServiceCollection services)
         {
             //services.RegisterListRepositories();
-            services.RegisterEFRepositories(Configuration);
+            //services.RegisterEFRepositories(Configuration);
+            services.RegisterAzureStorageRepositories(Configuration);
         }
 
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)

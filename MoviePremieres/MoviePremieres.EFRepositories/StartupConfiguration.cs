@@ -2,7 +2,7 @@
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using MoviePremieres.Domain.Repositories;
-using MoviePremieres.EFRepositories.List;
+using MoviePremieres.EFRepositories.Repositories;
 
 namespace MoviePremieres.EFRepositories
 {
