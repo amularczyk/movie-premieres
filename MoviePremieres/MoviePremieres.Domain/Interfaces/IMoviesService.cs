@@ -1,11 +1,12 @@
 ﻿using System.Collections.Generic;
+using System.Threading.Tasks;
 using MoviePremieres.Domain.Models;
 
 namespace MoviePremieres.Domain.Interfaces
 {
     public interface IMoviesService
     {
-        IEnumerable<Movie> GetAll();
-        void Add(Movie movie);
+        Task<IEnumerable<Movie>> GetAll();
+        Task Add(Movie movie);
     }
 }

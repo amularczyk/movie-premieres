@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using MoviePremieres.Domain.Interfaces;
 using MoviePremieres.Domain.Models;
 using MoviePremieres.Domain.Repositories;
@@ -15,15 +16,15 @@ namespace MoviePremieres.Domain.Services
             _moviesRepository = moviesRepository;
         }
 
-        public IEnumerable<Movie> GetAll()
+        public async Task<IEnumerable<Movie>> GetAll()
         {
-            return _moviesRepository.GetAll();
+            return await _moviesRepository.GetAll();
         }
 
-        public void Add(Movie movie)
+        public async Task Add(Movie movie)
         {
             movie.Premiere = DateTimeOffset.Now;
-            _moviesRepository.Create(movie);
+            await _moviesRepository.Create(movie);
         }
     }
 }

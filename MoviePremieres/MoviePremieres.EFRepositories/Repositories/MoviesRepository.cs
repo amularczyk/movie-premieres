@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using MoviePremieres.Domain.Models;
 using MoviePremieres.Domain.Repositories;
 
@@ -14,15 +15,16 @@ namespace MoviePremieres.EFRepositories.Repositories
             _dbContext = dbContext;
         }
 
-        public IEnumerable<Movie> GetAll()
+        public Task<IEnumerable<Movie>> GetAll()
         {
-            return _dbContext.Movies.ToList();
+            return Task.FromResult(_dbContext.Movies.ToList().AsEnumerable());
         }
 
-        public void Create(Movie movie)
+        public Task Create(Movie movie)
         {
             _dbContext.Movies.Add(movie);
             _dbContext.SaveChanges();
+            return Task.CompletedTask;
         }
     }
 }

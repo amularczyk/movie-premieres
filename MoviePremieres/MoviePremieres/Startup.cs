@@ -1,14 +1,14 @@
+using AutoMapper;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.SpaServices.ReactDevelopmentServer;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using MoviePremieres.AzureRepositories;
+using MoviePremieres.AzureRepositories.Mappers;
 using MoviePremieres.Domain.Interfaces;
 using MoviePremieres.Domain.Services;
-using MoviePremieres.EFRepositories;
-using MoviePremieres.ListRepositories;
-using MoviePremieres.AzureRepositories;
 
 namespace MoviePremieres
 {
@@ -33,9 +33,15 @@ namespace MoviePremieres
 
             RegisterServices(services);
             RegisterRepositories(services);
+            RegisterMappings();
 
             // In production, the React files will be served from this directory
             services.AddSpaStaticFiles(configuration => { configuration.RootPath = "ClientApp/build"; });
+        }
+
+        private void RegisterMappings()
+        {
+            Mapper.Initialize(cfg => { cfg.AddProfile<MovieProfile>(); });
         }
 
         private void RegisterServices(IServiceCollection services)

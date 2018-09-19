@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using MoviePremieres.Domain.Interfaces;
 using MoviePremieres.Domain.Models;
@@ -16,15 +17,15 @@ namespace MoviePremieres.Controllers
         }
 
         [HttpGet]
-        public IEnumerable<Movie> Get()
+        public async Task<IEnumerable<Movie>> Get()
         {
-            return _moviesService.GetAll();
+            return await _moviesService.GetAll();
         }
 
         [HttpPost]
-        public void Post([FromBody] Movie movie)
+        public async Task Post([FromBody] Movie movie)
         {
-            _moviesService.Add(movie);
+            await _moviesService.Add(movie);
         }
     }
 }

@@ -1,5 +1,4 @@
-﻿using Microsoft.Azure;
-using Microsoft.Extensions.Configuration;
+﻿using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using MoviePremieres.AzureRepositories.Repositories;
 using MoviePremieres.Domain.Repositories;
@@ -10,12 +9,12 @@ namespace MoviePremieres.AzureRepositories
     {
         public static string AzureStorageConnection { get; set; }
 
-        public static void RegisterAzureStorageRepositories(this IServiceCollection services, IConfiguration configuration)
+        public static void RegisterAzureStorageRepositories(this IServiceCollection services,
+            IConfiguration configuration)
         {
             services.AddTransient<IMoviesRepository, MoviesRepository>();
 
-            //AzureStorageConnection = configuration.GetConnectionString("AzureStorageConnection");
-            AzureStorageConnection = CloudConfigurationManager.GetSetting("AzureStorageConnection");
+            AzureStorageConnection = configuration.GetConnectionString("AzureStorageConnection");
         }
     }
 }
