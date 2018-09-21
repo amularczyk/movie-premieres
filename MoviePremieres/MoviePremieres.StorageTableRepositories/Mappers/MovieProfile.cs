@@ -1,8 +1,8 @@
 ﻿using AutoMapper;
-using MoviePremieres.AzureRepositories.Models;
 using MoviePremieres.Domain.Models;
+using MoviePremieres.StorageTableRepositories.Models;
 
-namespace MoviePremieres.AzureRepositories.Mappers
+namespace MoviePremieres.StorageTableRepositories.Mappers
 {
     public class MovieProfile : Profile
     {

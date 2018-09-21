@@ -1,7 +1,7 @@
 ﻿using System;
 using Microsoft.WindowsAzure.Storage.Table;
 
-namespace MoviePremieres.AzureRepositories.Models
+namespace MoviePremieres.StorageTableRepositories.Models
 {
     public class MovieEntity : TableEntity
     {

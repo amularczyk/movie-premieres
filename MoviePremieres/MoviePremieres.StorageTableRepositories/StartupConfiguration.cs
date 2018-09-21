@@ -1,10 +1,10 @@
 ﻿using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.WindowsAzure.Storage;
-using MoviePremieres.AzureRepositories.Repositories;
 using MoviePremieres.Domain.Repositories;
+using MoviePremieres.StorageTableRepositories.Repositories;
 
-namespace MoviePremieres.AzureRepositories
+namespace MoviePremieres.StorageTableRepositories
 {
     public static class StartupConfiguration
     {

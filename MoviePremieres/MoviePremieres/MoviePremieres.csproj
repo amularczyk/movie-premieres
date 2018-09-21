@@ -22,10 +22,10 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\MoviePremieres.AzureRepositories\MoviePremieres.AzureRepositories.csproj" />
     <ProjectReference Include="..\MoviePremieres.Domain\MoviePremieres.Domain.csproj" />
     <ProjectReference Include="..\MoviePremieres.EFRepositories\MoviePremieres.EFRepositories.csproj" />
     <ProjectReference Include="..\MoviePremieres.ListRepositories\MoviePremieres.ListRepositories.csproj" />
+    <ProjectReference Include="..\MoviePremieres.StorageTableRepositories\MoviePremieres.StorageTableRepositories.csproj" />
   </ItemGroup>
 
   <Target Name="DebugEnsureNodeEnv" BeforeTargets="Build" Condition=" '$(Configuration)' == 'Debug' And !Exists('$(SpaRoot)node_modules') ">

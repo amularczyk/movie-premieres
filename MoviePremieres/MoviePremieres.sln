@@ -7,11 +7,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MoviePremieres", "MoviePrem
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MoviePremieres.Domain", "MoviePremieres.Domain\MoviePremieres.Domain.csproj", "{BF884F1D-48DF-4C60-B238-594FF65AD0E6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MoviePremieres.ListRepositories", "MoviePremieres.ListRepositories\MoviePremieres.ListRepositories.csproj", "{27088D0E-92DD-40A8-9BFF-3ED5AF209D60}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MoviePremieres.ListRepositories", "MoviePremieres.ListRepositories\MoviePremieres.ListRepositories.csproj", "{27088D0E-92DD-40A8-9BFF-3ED5AF209D60}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MoviePremieres.EFRepositories", "MoviePremieres.EFRepositories\MoviePremieres.EFRepositories.csproj", "{B11FD1CB-2536-4B2B-A9EC-E248CB053FBB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MoviePremieres.EFRepositories", "MoviePremieres.EFRepositories\MoviePremieres.EFRepositories.csproj", "{B11FD1CB-2536-4B2B-A9EC-E248CB053FBB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MoviePremieres.AzureRepositories", "MoviePremieres.AzureRepositories\MoviePremieres.AzureRepositories.csproj", "{CC6C5871-599B-4415-8F1E-C401F2F16F8A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MoviePremieres.StorageTableRepositories", "MoviePremieres.StorageTableRepositories\MoviePremieres.StorageTableRepositories.csproj", "{CC6C5871-599B-4415-8F1E-C401F2F16F8A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

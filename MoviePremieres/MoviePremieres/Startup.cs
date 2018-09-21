@@ -5,10 +5,10 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.SpaServices.ReactDevelopmentServer;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using MoviePremieres.AzureRepositories;
-using MoviePremieres.AzureRepositories.Mappers;
 using MoviePremieres.Domain.Interfaces;
 using MoviePremieres.Domain.Services;
+using MoviePremieres.StorageTableRepositories;
+using MoviePremieres.StorageTableRepositories.Mappers;
 
 namespace MoviePremieres
 {

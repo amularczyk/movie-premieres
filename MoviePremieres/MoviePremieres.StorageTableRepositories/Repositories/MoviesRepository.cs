@@ -2,11 +2,11 @@
 using System.Threading.Tasks;
 using AutoMapper;
 using Microsoft.WindowsAzure.Storage.Table;
-using MoviePremieres.AzureRepositories.Models;
 using MoviePremieres.Domain.Models;
 using MoviePremieres.Domain.Repositories;
+using MoviePremieres.StorageTableRepositories.Models;
 
-namespace MoviePremieres.AzureRepositories.Repositories
+namespace MoviePremieres.StorageTableRepositories.Repositories
 {
     public class MoviesRepository : IMoviesRepository
     {
