@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 using AutoMapper;
-using Microsoft.WindowsAzure.Storage;
 using Microsoft.WindowsAzure.Storage.Table;
 using MoviePremieres.AzureRepositories.Models;
 using MoviePremieres.Domain.Models;
@@ -13,11 +12,9 @@ namespace MoviePremieres.AzureRepositories.Repositories
     {
         private readonly CloudTable _table;
 
-        public MoviesRepository()
+        public MoviesRepository(CloudTable table)
         {
-            var storageAccount = CloudStorageAccount.Parse(StartupConfiguration.AzureStorageConnection);
-            var tableClient = storageAccount.CreateCloudTableClient();
-            _table = tableClient.GetTableReference("moviepremieres");
+            _table = table;
         }
 
         public async Task<IEnumerable<Movie>> GetAll()
