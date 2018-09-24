@@ -18,7 +18,7 @@ namespace MoviePremieres.StorageTableRepositories
             var tableClient = storageAccount.CreateCloudTableClient();
             var table = tableClient.GetTableReference("moviepremieres");
 
-            table.CreateIfNotExistsAsync();
+            //table.CreateIfNotExistsAsync();
 
             services.AddSingleton(_ => table);
         }
