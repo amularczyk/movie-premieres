@@ -29,8 +29,8 @@ New-AzureRmResourceGroup -Name $resourceGroup -Location $location
 
 
 #Sql Storage
-$storageAccount = New-AzureRmStorageAccount -ResourceGroupName $resourceGroup -Name $storageAccountName -Location $location -SkuName Standard_LRS -Kind StorageV2 -AccessTier Cool
-$ctx = $storageAccount.Context
+#$storageAccount = New-AzureRmStorageAccount -ResourceGroupName $resourceGroup -Name $storageAccountName -Location $location -SkuName Standard_LRS -Kind StorageV2 -AccessTier Cool
+#$ctx = $storageAccount.Context
 
 #Sql Sotrage Table - something not working here when running a whole script
-New-AzureStorageTable -Context $ctx -Name $tableName
+#New-AzureStorageTable -Context $ctx -Name $tableName

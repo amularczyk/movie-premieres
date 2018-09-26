@@ -7,8 +7,8 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using MoviePremieres.Domain.Interfaces;
 using MoviePremieres.Domain.Services;
-using MoviePremieres.StorageTableRepositories;
-using MoviePremieres.StorageTableRepositories.Mappers;
+using MoviePremieres.CosmosDBRepositories;
+using MoviePremieres.CosmosDBRepositories.Mappers;
 
 namespace MoviePremieres
 {
@@ -53,7 +53,8 @@ namespace MoviePremieres
         {
             //services.RegisterListRepositories();
             //services.RegisterEFRepositories(Configuration);
-            services.RegisterAzureStorageRepositories(Configuration);
+            //services.RegisterAzureCosmosDBRepositories(Configuration);
+            services.RegisterAzureCosmosDBRepositories(Configuration);
         }
 
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)

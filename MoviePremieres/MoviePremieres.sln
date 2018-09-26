@@ -13,6 +13,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MoviePremieres.EFRepositori
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MoviePremieres.StorageTableRepositories", "MoviePremieres.StorageTableRepositories\MoviePremieres.StorageTableRepositories.csproj", "{CC6C5871-599B-4415-8F1E-C401F2F16F8A}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MoviePremieres.CosmosDBRepositories", "MoviePremieres.CosmosDBRepositories\MoviePremieres.CosmosDBRepositories.csproj", "{466E14C5-CBDD-40D5-9A2C-6EA3D7793CD1}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,10 @@ Global
 		{CC6C5871-599B-4415-8F1E-C401F2F16F8A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CC6C5871-599B-4415-8F1E-C401F2F16F8A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CC6C5871-599B-4415-8F1E-C401F2F16F8A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{466E14C5-CBDD-40D5-9A2C-6EA3D7793CD1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{466E14C5-CBDD-40D5-9A2C-6EA3D7793CD1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{466E14C5-CBDD-40D5-9A2C-6EA3D7793CD1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{466E14C5-CBDD-40D5-9A2C-6EA3D7793CD1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

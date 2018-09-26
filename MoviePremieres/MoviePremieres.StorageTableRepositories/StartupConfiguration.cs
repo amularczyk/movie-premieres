@@ -14,13 +14,13 @@ namespace MoviePremieres.StorageTableRepositories
             services.AddTransient<IMoviesRepository, MoviesRepository>();
 
             var azureStorageConnection = configuration.GetConnectionString("AzureStorageConnection");
-            var storageAccount = CloudStorageAccount.Parse(azureStorageConnection);
-            var tableClient = storageAccount.CreateCloudTableClient();
-            var table = tableClient.GetTableReference("moviepremieres");
 
-            //table.CreateIfNotExistsAsync();
-
-            services.AddSingleton(_ => table);
+            services.AddScoped(_ =>
+            {
+                var storageAccount = CloudStorageAccount.Parse(azureStorageConnection);
+                var tableClient = storageAccount.CreateCloudTableClient();
+                return tableClient.GetTableReference("moviepremieres");
+            });
         }
     }
 }
