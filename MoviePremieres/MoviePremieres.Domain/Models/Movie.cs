@@ -6,6 +6,8 @@ namespace MoviePremieres.Domain.Models
     {
         public Guid Id { get; set; }
         public string Title { get; set; }
-        public DateTimeOffset Premiere { get; set; }
+        public DateTimeOffset PremiereDate { get; set; }
+        public string ImageUrl { get; set; }
+        public string FilmwebUrl { get; set; }
     }
 }

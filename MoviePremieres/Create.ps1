@@ -34,3 +34,11 @@ New-AzureRmResourceGroup -Name $resourceGroup -Location $location
 
 #Sql Sotrage Table - something not working here when running a whole script
 #New-AzureStorageTable -Context $ctx -Name $tableName
+
+
+#Cosmos DB - MongoDB
+$consistencyPolicy = @{"defaultConsistencyLevel"="Session"; "maxIntervalInSeconds"="5"; "maxStalenessPrefix"="100"}
+
+$DBProperties = @{"databaseAccountOfferType"="Standard"; "consistencyPolicy"=$consistencyPolicy; "ipRangeFilter"=$ip}
+
+New-AzureRmResource -ResourceType "Microsoft.DocumentDb/databaseAccounts" -ResourceGroupName $resourceGroup -Location $location -Name $serverName -Kind "MongoDB" -PropertyObject $DBProperties

@@ -24,6 +24,6 @@ namespace MoviePremieres.ListRepositories.Repositories
     public static class ListDatabase
     {
         public static List<Movie> Movies { get; } =
-            new List<Movie> {new Movie {Title = "movie 1", Premiere = DateTimeOffset.Now}};
+            new List<Movie> {new Movie {Title = "movie 1", PremiereDate = DateTimeOffset.Now}};
     }
 }

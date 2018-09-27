@@ -3,6 +3,7 @@ using System.Threading.Tasks;
 using AutoMapper;
 using MongoDB.Bson;
 using MongoDB.Driver;
+using MoviePremieres.CosmosDBRepositories.Configs;
 using MoviePremieres.CosmosDBRepositories.Models;
 using MoviePremieres.Domain.Models;
 using MoviePremieres.Domain.Repositories;
@@ -12,10 +13,13 @@ namespace MoviePremieres.CosmosDBRepositories.Repositories
     public class MoviesRepository : IMoviesRepository
     {
         private readonly MongoClient _mongoClient;
+        private readonly AzureCosmosDbConfig _azureCosmosDbConfig;
+        private readonly string _collectionName = "Movies";
 
-        public MoviesRepository(MongoClient mongoClient)
+        public MoviesRepository(MongoClient mongoClient, AzureCosmosDbConfig azureCosmosDbConfig)
         {
             _mongoClient = mongoClient;
+            _azureCosmosDbConfig = azureCosmosDbConfig;
         }
 
         public Task<IEnumerable<Movie>> GetAll()
@@ -39,11 +43,8 @@ namespace MoviePremieres.CosmosDBRepositories.Repositories
 
         private IMongoCollection<MovieEntity> GetCollection()
         {
-            var dbName = "moviepremieres";
-            var collectionName = "moviepremieres";
-
-            var database = _mongoClient.GetDatabase(dbName);
-            var collection = database.GetCollection<MovieEntity>(collectionName);
+            var database = _mongoClient.GetDatabase(_azureCosmosDbConfig.DbName);
+            var collection = database.GetCollection<MovieEntity>(_collectionName);
             return collection;
         }
     }

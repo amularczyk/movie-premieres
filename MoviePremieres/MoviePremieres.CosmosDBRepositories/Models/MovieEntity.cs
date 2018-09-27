@@ -12,7 +12,13 @@ namespace MoviePremieres.CosmosDBRepositories.Models
         [BsonElement("Title")]
         public string Title { get; set; }
 
-        [BsonElement("Premiere")]
-        public DateTimeOffset Premiere { get; set; }
+        [BsonElement("PremiereDate")]
+        public DateTimeOffset PremiereDate { get; set; }
+
+        [BsonElement("ImageUrl")]
+        public string ImageUrl { get; set; }
+
+        [BsonElement("FilmwebUrl")]
+        public string FilmwebUrl { get; set; }
     }
 }

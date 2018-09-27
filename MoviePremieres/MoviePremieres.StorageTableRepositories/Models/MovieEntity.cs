@@ -6,6 +6,8 @@ namespace MoviePremieres.StorageTableRepositories.Models
     public class MovieEntity : TableEntity
     {
         public string Title { get; set; }
-        public DateTimeOffset Premiere { get; set; }
+        public DateTimeOffset PremiereDate { get; set; }
+        public string ImageUrl { get; set; }
+        public string FilmwebUrl { get; set; }
     }
 }

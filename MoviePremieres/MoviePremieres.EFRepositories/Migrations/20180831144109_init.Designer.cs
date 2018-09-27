@@ -27,7 +27,7 @@ namespace MoviePremieres.EFRepositories.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<DateTimeOffset>("Premiere");
+                    b.Property<DateTimeOffset>("PremiereDate");
 
                     b.Property<string>("Title");
 
