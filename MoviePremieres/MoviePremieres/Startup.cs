@@ -31,6 +31,8 @@ namespace MoviePremieres
         {
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
 
+            services.AddOptions();
+
             RegisterServices(services);
             RegisterRepositories(services);
             RegisterMappings();

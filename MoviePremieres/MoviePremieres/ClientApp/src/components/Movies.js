@@ -33,7 +33,7 @@ function renderMoviesTable(props) {
         {props.movies.map(movie =>
           <tr key={movie.title}>
             <td>{movie.title}</td>
-            <td>{movie.premiere}</td>
+            <td>{movie.premiereDate}</td>
           </tr>
         )}
       </tbody>

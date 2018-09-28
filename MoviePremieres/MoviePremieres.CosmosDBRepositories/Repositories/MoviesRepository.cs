@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 using AutoMapper;
+using Microsoft.Extensions.Options;
 using MongoDB.Bson;
 using MongoDB.Driver;
 using MoviePremieres.CosmosDBRepositories.Configs;
@@ -16,10 +17,10 @@ namespace MoviePremieres.CosmosDBRepositories.Repositories
         private readonly AzureCosmosDbConfig _azureCosmosDbConfig;
         private readonly string _collectionName = "Movies";
 
-        public MoviesRepository(MongoClient mongoClient, AzureCosmosDbConfig azureCosmosDbConfig)
+        public MoviesRepository(MongoClient mongoClient, IOptions<AzureCosmosDbConfig> azureCosmosDbConfig)
         {
             _mongoClient = mongoClient;
-            _azureCosmosDbConfig = azureCosmosDbConfig;
+            _azureCosmosDbConfig = azureCosmosDbConfig.Value;
         }
 
         public Task<IEnumerable<Movie>> GetAll()
