@@ -31,10 +31,11 @@ function renderMoviesTable(props) {
       </thead>
       <tbody>
         {props.movies.map(movie =>
-          <tr key={movie.title}>
-            <td>{movie.title}</td>
-            <td>{movie.premiereDate}</td>
-          </tr>
+            <tr key={movie.id}>
+                <td><img src={movie.imageUrl}/></td>
+                <td>{movie.title}</td>
+                <td>{movie.premiereDate}</td>
+            </tr>
         )}
       </tbody>
     </table>
