@@ -5,10 +5,11 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.SpaServices.ReactDevelopmentServer;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using MoviePremieres.Domain.Interfaces;
-using MoviePremieres.Domain.Services;
 using MoviePremieres.CosmosDBRepositories;
 using MoviePremieres.CosmosDBRepositories.Mappers;
+using MoviePremieres.Domain;
+using MoviePremieres.Domain.Interfaces;
+using MoviePremieres.Domain.Services;
 
 namespace MoviePremieres
 {
@@ -86,8 +87,13 @@ namespace MoviePremieres
             {
                 spa.Options.SourcePath = "ClientApp";
 
-                if (env.IsDevelopment()) spa.UseReactDevelopmentServer("start");
+                if (env.IsDevelopment())
+                {
+                    spa.UseReactDevelopmentServer("start");
+                }
             });
+
+            app.SeedData();
         }
     }
 }

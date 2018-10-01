@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
 using MoviePremieres.Domain.Models;
 using MoviePremieres.Domain.Repositories;
 
@@ -15,16 +16,22 @@ namespace MoviePremieres.EFRepositories.Repositories
             _dbContext = dbContext;
         }
 
-        public Task<IEnumerable<Movie>> GetAll()
+        public async Task<IEnumerable<Movie>> GetAll()
         {
-            return Task.FromResult(_dbContext.Movies.ToList().AsEnumerable());
+            var movies = await _dbContext.Movies.ToListAsync();
+            return movies.AsEnumerable();
         }
 
-        public Task Create(Movie movie)
+        public async Task Add(Movie movie)
         {
-            _dbContext.Movies.Add(movie);
-            _dbContext.SaveChanges();
-            return Task.CompletedTask;
+            await _dbContext.Movies.AddAsync(movie);
+            await _dbContext.SaveChangesAsync();
+        }
+
+        public async Task Add(IEnumerable<Movie> movies)
+        {
+            await _dbContext.Movies.AddRangeAsync(movies);
+            await _dbContext.SaveChangesAsync();
         }
     }
 }

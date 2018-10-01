@@ -7,6 +7,7 @@ namespace MoviePremieres.Domain.Repositories
     public interface IMoviesRepository
     {
         Task<IEnumerable<Movie>> GetAll();
-        Task Create(Movie movie);
+        Task Add(Movie movie);
+        Task Add(IEnumerable<Movie> movies);
     }
 }

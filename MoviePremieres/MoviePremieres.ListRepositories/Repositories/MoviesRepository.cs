@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using MoviePremieres.Domain.Models;
@@ -14,16 +13,21 @@ namespace MoviePremieres.ListRepositories.Repositories
             return Task.FromResult(ListDatabase.Movies.AsEnumerable());
         }
 
-        public Task Create(Movie movie)
+        public Task Add(Movie movie)
         {
             ListDatabase.Movies.Add(movie);
+            return Task.CompletedTask;
+        }
+
+        public Task Add(IEnumerable<Movie> movies)
+        {
+            ListDatabase.Movies.AddRange(movies);
             return Task.CompletedTask;
         }
     }
 
     public static class ListDatabase
     {
-        public static List<Movie> Movies { get; } =
-            new List<Movie> {new Movie {Title = "movie 1", PremiereDate = DateTimeOffset.Now}};
+        public static List<Movie> Movies { get; } = new List<Movie>();
     }
 }

@@ -24,7 +24,7 @@ namespace MoviePremieres.Domain.Services
         public async Task Add(Movie movie)
         {
             movie.PremiereDate = DateTimeOffset.Now;
-            await _moviesRepository.Create(movie);
+            await _moviesRepository.Add(movie);
         }
     }
 }

@@ -40,7 +40,7 @@ namespace MoviePremieres.StorageTableRepositories.Repositories
             return movies;
         }
 
-        public async Task Create(Movie movie)
+        public async Task Add(Movie movie)
         {
             var movieEntity = Mapper.Map<MovieEntity>(movie);
             movieEntity.PartitionKey = "movie";
@@ -48,6 +48,21 @@ namespace MoviePremieres.StorageTableRepositories.Repositories
             var insertOperation = TableOperation.Insert(movieEntity);
 
             await _table.ExecuteAsync(insertOperation);
+        }
+
+        public async Task Add(IEnumerable<Movie> movies)
+        {
+            var insertOperations = new TableBatchOperation();
+
+            var movieEntities = Mapper.Map<IEnumerable<MovieEntity>>(movies);
+            foreach (var movieEntity in movieEntities)
+            {
+                movieEntity.PartitionKey = "movie";
+                insertOperations.Add(TableOperation.Insert(movieEntity));
+            }
+
+
+            await _table.ExecuteBatchAsync(insertOperations);
         }
     }
 }

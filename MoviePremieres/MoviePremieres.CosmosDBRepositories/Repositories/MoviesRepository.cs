@@ -13,9 +13,9 @@ namespace MoviePremieres.CosmosDBRepositories.Repositories
 {
     public class MoviesRepository : IMoviesRepository
     {
-        private readonly MongoClient _mongoClient;
         private readonly AzureCosmosDbConfig _azureCosmosDbConfig;
         private readonly string _collectionName = "Movies";
+        private readonly MongoClient _mongoClient;
 
         public MoviesRepository(MongoClient mongoClient, IOptions<AzureCosmosDbConfig> azureCosmosDbConfig)
         {
@@ -32,14 +32,20 @@ namespace MoviePremieres.CosmosDBRepositories.Repositories
             return Task.FromResult(movies);
         }
 
-        public Task Create(Movie movie)
+        public async Task Add(Movie movie)
         {
             var movieEntity = Mapper.Map<MovieEntity>(movie);
 
             var collection = GetCollection();
-            collection.InsertOne(movieEntity);
+            await collection.InsertOneAsync(movieEntity);
+        }
 
-            return Task.CompletedTask;
+        public async Task Add(IEnumerable<Movie> movies)
+        {
+            var movieEntities = Mapper.Map<IEnumerable<MovieEntity>>(movies);
+
+            var collection = GetCollection();
+            await collection.InsertManyAsync(movieEntities);
         }
 
         private IMongoCollection<MovieEntity> GetCollection()
