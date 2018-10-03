@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { Table } from 'react-bootstrap';
-import { actionCreators } from '../../store/MoviesStore';
+import { moviesActions } from '../../store/actions/moviesActions';
 import './styles.css';
 
 class Movies extends Component {
@@ -40,5 +40,5 @@ class Movies extends Component {
 
 export default connect(
   state => state.moviesStore,
-  dispatch => bindActionCreators(actionCreators, dispatch)
+  dispatch => bindActionCreators(moviesActions, dispatch)
 )(Movies);
