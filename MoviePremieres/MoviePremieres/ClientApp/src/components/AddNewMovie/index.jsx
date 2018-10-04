@@ -2,6 +2,12 @@ import React, { Component } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { Button, FormGroup, ControlLabel, FormControl } from 'react-bootstrap';
+
+import 'react-dates/initialize';
+import 'react-dates/lib/css/_datepicker.css';
+
+import { SingleDatePicker } from 'react-dates';
+
 import { moviesActions } from '../../store/actions/moviesActions';
 import './styles.css';
 
@@ -9,75 +15,65 @@ class AddNewMovie extends Component {
     constructor(props) {
         super(props);
 
-        this.handleChangeTitle = this.handleChangeTitle.bind(this);
-        this.handleChangePremiereDate = this.handleChangePremiereDate.bind(this);
-        this.handleChangeImageUrl = this.handleChangeImageUrl.bind(this);
-        this.handleChangeFilmwebUrl = this.handleChangeFilmwebUrl.bind(this);
-
         this.state = {
             title: '',
-            premiereDate: '',
+            premiereDate: null,
+            premiereDateFocused: false,
             imageUrl: '',
             filmwebUrl: ''
         };
     }
 
-    handleChangeTitle(e) {
-        this.setState({ title: e.target.value });
-    }
-
-    handleChangePremiereDate(e) {
-        this.setState({ premiereDate: e.target.value });
-    }
-
-    handleChangeImageUrl(e) {
-        this.setState({ imageUrl: e.target.value });
-    }
-
-    handleChangeFilmwebUrl(e) {
-        this.setState({ filmwebUrl: e.target.value });
-    }
-
     render() {
         const { addNewMovie } = this.props;
-        const { title, premiereDate, imageUrl, filmwebUrl } = this.state;
+        const { title, premiereDate, premiereDateFocused, imageUrl, filmwebUrl } = this.state;
 
         return (
             <div>
                 <h1>Add new movie</h1>
 
                 <form>
-                    <FormGroup controlId="addNewMovieForm">
+                    <FormGroup controlId="addNewMovieTile">
                         <ControlLabel>Title</ControlLabel>
                         <FormControl
                             type="text"
                             value={title}
                             placeholder="Enter title"
-                            onChange={this.handleChangeTitle}
+                            onChange={e => this.setState({ title: e.target.value })}
                         />
                         <FormControl.Feedback />
+                    </FormGroup>
+
+                    <FormGroup controlId="addNewMoviePremiereDate">
                         <ControlLabel>Premiere date</ControlLabel>
-                        <FormControl
-                            type="text"
-                            value={premiereDate}
-                            placeholder="Enter premiere date"
-                            onChange={this.handleChangePremiereDate}
-                        />
-                        <FormControl.Feedback />
+                        <div>
+                            <SingleDatePicker
+                                onDateChange={date => this.setState({ premiereDate: date })}
+                                date={premiereDate}
+                                focused={premiereDateFocused}
+                                onFocusChange={({ focused }) => this.setState({ premiereDateFocused: focused })}
+                            />
+                        </div>
+                    </FormGroup>
+
+                    <FormGroup controlId="addNewMovieImageUrl">
                         <ControlLabel>Image link</ControlLabel>
                         <FormControl
                             type="text"
                             value={imageUrl}
                             placeholder="Enter image link"
-                            onChange={this.handleChangeImageUrl}
+                            onChange={e => this.setState({ imageUrl: e.target.value })}
                         />
                         <FormControl.Feedback />
+                    </FormGroup>
+
+                    <FormGroup controlId="addNewMovieFilmwebUrl">
                         <ControlLabel>Filmweb link</ControlLabel>
                         <FormControl
                             type="text"
                             value={filmwebUrl}
                             placeholder="Enter filmweb link"
-                            onChange={this.handleChangeFilmwebUrl}
+                            onChange={e => this.setState({ filmwebUrl: e.target.value })}
                         />
                         <FormControl.Feedback />
                     </FormGroup>
