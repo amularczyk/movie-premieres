@@ -1,4 +1,8 @@
-﻿export const requestMoviesStoreType = 'REQUEST_MOVIES';
-export const receiveMoviesStoreType = 'RECEIVE_MOVIES';
+﻿export const getMoviesRequest = 'GET_MOVIES_REQUEST';
+export const getMoviesSuccess = 'GET_MOVIES_SUCCESS';
+
 export const addNewMovieRequest = 'ADD_NEW_MOVIE_REQUEST';
 export const addNewMovieSuccess = 'ADD_NEW_MOVIE_SUCCESS';
+
+export const getMovieRequest = 'GET_MOVIE_REQUEST';
+export const getMovieSuccess = 'GET_MOVIE_SUCCESS';

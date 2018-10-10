@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using AutoMapper;
 using Microsoft.Extensions.Options;
@@ -46,6 +47,11 @@ namespace MoviePremieres.CosmosDBRepositories.Repositories
 
             var collection = GetCollection();
             await collection.InsertManyAsync(movieEntities);
+        }
+
+        public Task<Movie> GetById(Guid id)
+        {
+            throw new NotImplementedException();
         }
 
         private IMongoCollection<MovieEntity> GetCollection()

@@ -23,8 +23,12 @@ namespace MoviePremieres.Domain.Services
 
         public async Task Add(Movie movie)
         {
-            movie.PremiereDate = DateTimeOffset.Now;
             await _moviesRepository.Add(movie);
+        }
+
+        public async Task<Movie> GetById(Guid id)
+        {
+            return await _moviesRepository.GetById(id);
         }
     }
 }

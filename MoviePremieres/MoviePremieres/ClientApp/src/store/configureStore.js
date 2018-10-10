@@ -2,10 +2,12 @@
 import thunk from 'redux-thunk';
 import { routerReducer, routerMiddleware } from 'react-router-redux';
 import * as moviesReducer from './reducers/moviesReducer';
+import * as movieReducer from './reducers/movieReducer';
 
 export default function configureStore(history, initialState) {
   const reducers = {
-    moviesStore: moviesReducer.reducer
+    moviesStore: moviesReducer.reducer,
+    movieStore: movieReducer.reducer
   };
 
   const middleware = [

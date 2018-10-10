@@ -1,19 +1,19 @@
 ﻿import {
-    requestMoviesStoreType,
-    receiveMoviesStoreType,
+    getMoviesRequest,
+    getMoviesSuccess,
     addNewMovieRequest,
     addNewMovieSuccess
 } from "../constants/moviesConstants";
 
 export const moviesActions = {
     requestMovies: () => async (dispatch) => {
-        dispatch({ type: requestMoviesStoreType });
+        dispatch({ type: getMoviesRequest });
 
         const url = `api/movies`;
         const response = await fetch(url);
         const movies = await response.json();
 
-        dispatch({ type: receiveMoviesStoreType, movies });
+        dispatch({ type: getMoviesSuccess, movies });
     },
 
     addNewMovie: movie => async (dispatch) => {
@@ -32,5 +32,15 @@ export const moviesActions = {
 
         dispatch({ type: addNewMovieSuccess });
 
-    }
+    },
+
+    requestMovie: (id) => async (dispatch) => {
+        dispatch({ type: getMovieRequest });
+
+        const url = `api/movies/{id}`;
+        const response = await fetch(url);
+        const movie = await response.json();
+
+        dispatch({ type: getMovieSuccess, movie });
+    },
 };

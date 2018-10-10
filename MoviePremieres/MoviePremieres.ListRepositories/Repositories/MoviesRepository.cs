@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using MoviePremieres.Domain.Models;
@@ -23,6 +24,11 @@ namespace MoviePremieres.ListRepositories.Repositories
         {
             ListDatabase.Movies.AddRange(movies);
             return Task.CompletedTask;
+        }
+
+        public Task<Movie> GetById(Guid id)
+        {
+            return Task.FromResult(ListDatabase.Movies.FirstOrDefault(m => m.Id == id));
         }
     }
 

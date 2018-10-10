@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
@@ -32,6 +33,11 @@ namespace MoviePremieres.EFRepositories.Repositories
         {
             await _dbContext.Movies.AddRangeAsync(movies);
             await _dbContext.SaveChangesAsync();
+        }
+
+        public async Task<Movie> GetById(Guid id)
+        {
+            return await _dbContext.Movies.FindAsync(id);
         }
     }
 }

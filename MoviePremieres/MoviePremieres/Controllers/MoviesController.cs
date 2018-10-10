@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using MoviePremieres.Domain.Interfaces;
@@ -20,6 +21,13 @@ namespace MoviePremieres.Controllers
         public async Task<IEnumerable<Movie>> Get()
         {
             return await _moviesService.GetAll();
+        }
+
+        [HttpGet]
+        [Route("{id}")]
+        public async Task<Movie> Get(Guid id)
+        {
+            return await _moviesService.GetById(id);
         }
 
         [HttpPost]

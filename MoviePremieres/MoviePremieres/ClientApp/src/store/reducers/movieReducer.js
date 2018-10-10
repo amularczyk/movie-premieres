@@ -1,25 +1,25 @@
 ﻿import {
-    getMoviesRequest,
-    getMoviesSuccess
+    getMovieRequest,
+    getMovieSuccess
 } from "../constants/moviesConstants";
 
-const initialState = { movies: [], isLoading: false };
+const initialState = { movie: {}, isLoading: false };
 
 
 export const reducer = (state, action) => {
     state = state || initialState;
 
-    if (action.type === getMoviesRequest) {
+    if (action.type === getMovieRequest) {
         return {
             ...state,
             isLoading: true
         };
     }
 
-    if (action.type === getMoviesSuccess) {
+    if (action.type === getMovieSuccess) {
         return {
             ...state,
-            movies: action.movies,
+            movie: action.movie,
             isLoading: false
         };
     }

@@ -11,12 +11,9 @@ import { SingleDatePicker } from 'react-dates';
 import { moviesActions } from '../../store/actions/moviesActions';
 import './styles.css';
 
-class AddNewMovie extends Component {
+class Movie extends Component {
     constructor(props, context) {
         super(props, context);
-
-        this.getTitleValidationState = this.getTitleValidationState.bind(this);
-        this.addMovie = this.addMovie.bind(this);
 
         this.state = {
             title: '',
@@ -27,28 +24,6 @@ class AddNewMovie extends Component {
         };
     }
 
-    getTitleValidationState() {
-        const length = this.state.title.length;
-        if (length > 2) return 'success';
-        else if (length > 0) return 'error';
-        return null;
-    }
-
-    addMovie() {
-        const { addNewMovie } = this.props;
-        const { title, premiereDate, imageUrl, filmwebUrl } = this.state;
-
-        addNewMovie({ title, premiereDate, imageUrl, filmwebUrl });
-
-        this.setState({
-            title: '',
-            premiereDate: null,
-            premiereDateFocused: false,
-            imageUrl: '',
-            filmwebUrl: ''
-        });
-    }
-
     render() {
         const { title, premiereDate, premiereDateFocused, imageUrl, filmwebUrl } = this.state;
 
@@ -57,18 +32,18 @@ class AddNewMovie extends Component {
                 <h1>Add new movie</h1>
 
                 <form>
-                    <FormGroup controlId="addNewMovieTile" validationState={this.getTitleValidationState()}>
+                    <FormGroup controlId="movieTile">
                         <ControlLabel>Title</ControlLabel>
                         <FormControl
                             type="text"
                             value={title}
                             placeholder="Enter title"
-                            onChange={e => this.setState({ title: e.target.value })}
+                            disabled
                         />
                         <FormControl.Feedback />
                     </FormGroup>
 
-                    <FormGroup controlId="addNewMoviePremiereDate">
+                    <FormGroup controlId="moviePremiereDate">
                         <ControlLabel>Premiere date</ControlLabel>
                         <div>
                             <SingleDatePicker
@@ -76,34 +51,33 @@ class AddNewMovie extends Component {
                                 date={premiereDate}
                                 focused={premiereDateFocused}
                                 onFocusChange={({ focused }) => this.setState({ premiereDateFocused: focused })}
-                                isOutsideRange={() => false}
+                                disabled
                             />
                         </div>
                     </FormGroup>
 
-                    <FormGroup controlId="addNewMovieImageUrl">
+                    <FormGroup controlId="movieImageUrl">
                         <ControlLabel>Image link</ControlLabel>
                         <FormControl
                             type="text"
                             value={imageUrl}
                             placeholder="Enter image link"
-                            onChange={e => this.setState({ imageUrl: e.target.value })}
+                            disabled
                         />
                         <FormControl.Feedback />
                     </FormGroup>
 
-                    <FormGroup controlId="addNewMovieFilmwebUrl">
+                    <FormGroup controlId="movieFilmwebUrl">
                         <ControlLabel>Filmweb link</ControlLabel>
                         <FormControl
                             type="text"
                             value={filmwebUrl}
                             placeholder="Enter filmweb link"
-                            onChange={e => this.setState({ filmwebUrl: e.target.value })}
+                            disabled
                         />
                         <FormControl.Feedback />
                     </FormGroup>
                 </form>
-                <Button type="submit" onClick={() => this.addMovie()}>Add new movie</Button>
             </div>
         );
     }
@@ -112,4 +86,4 @@ class AddNewMovie extends Component {
 export default connect(
   state => state.moviesStore,
   dispatch => bindActionCreators(moviesActions, dispatch)
-)(AddNewMovie);
+)(Movie);

@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using AutoMapper;
 using Microsoft.WindowsAzure.Storage.Table;
@@ -63,6 +64,11 @@ namespace MoviePremieres.StorageTableRepositories.Repositories
 
 
             await _table.ExecuteBatchAsync(insertOperations);
+        }
+
+        public Task<Movie> GetById(Guid id)
+        {
+            throw new NotImplementedException();
         }
     }
 }
