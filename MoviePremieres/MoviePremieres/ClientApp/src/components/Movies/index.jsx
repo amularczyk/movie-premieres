@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { Table } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
 import { moviesActions } from '../../store/actions/moviesActions';
 import './styles.css';
 
@@ -24,10 +25,10 @@ class Movies extends Component {
                         </tr>
                     </thead>
                     <tbody>
-                        {movies.map(movie =>
+                        { movies.map(movie =>
                             <tr key={movie.id}>
                                 <td><img src={movie.imageUrl} /></td>
-                                <td>{movie.title}</td>
+                                <td><Link to={`/movie/${movie.id}`}>{movie.title}</Link></td>
                                 <td>{new Date(movie.premiereDate).toLocaleDateString("en-GB")}</td>
                             </tr>
                         )}

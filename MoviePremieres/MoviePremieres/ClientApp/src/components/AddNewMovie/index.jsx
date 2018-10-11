@@ -2,12 +2,9 @@ import React, { Component } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { Button, FormGroup, ControlLabel, FormControl } from 'react-bootstrap';
-
 import 'react-dates/initialize';
 import 'react-dates/lib/css/_datepicker.css';
-
 import { SingleDatePicker } from 'react-dates';
-
 import { moviesActions } from '../../store/actions/moviesActions';
 import './styles.css';
 
@@ -37,6 +34,7 @@ class AddNewMovie extends Component {
     addMovie() {
         const { addNewMovie } = this.props;
         const { title, premiereDate, imageUrl, filmwebUrl } = this.state;
+        debugger;
 
         addNewMovie({ title, premiereDate, imageUrl, filmwebUrl });
 

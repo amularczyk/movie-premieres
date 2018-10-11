@@ -2,8 +2,12 @@
     getMoviesRequest,
     getMoviesSuccess,
     addNewMovieRequest,
-    addNewMovieSuccess
+    addNewMovieSuccess,
+    getMovieRequest,
+    getMovieSuccess
 } from "../constants/moviesConstants";
+
+import moment from "moment";
 
 export const moviesActions = {
     requestMovies: () => async (dispatch) => {
@@ -34,13 +38,16 @@ export const moviesActions = {
 
     },
 
-    requestMovie: (id) => async (dispatch) => {
+    requestMovie: ({ id }) => async (dispatch) => {
         dispatch({ type: getMovieRequest });
 
-        const url = `api/movies/{id}`;
+        const url = `api/movies/${id}`;
         const response = await fetch(url);
         const movie = await response.json();
+        var premiereDate = moment(movie.premiereDate);
+        debugger;
+        
 
-        dispatch({ type: getMovieSuccess, movie });
+        dispatch({ type: getMovieSuccess, movie: { ...movie, premiereDate } });
     },
 };

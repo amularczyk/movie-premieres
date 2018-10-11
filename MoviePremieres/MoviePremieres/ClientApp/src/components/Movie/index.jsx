@@ -2,14 +2,11 @@ import React, { Component } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { Button, FormGroup, ControlLabel, FormControl } from 'react-bootstrap';
-
 import 'react-dates/initialize';
 import 'react-dates/lib/css/_datepicker.css';
-
 import { SingleDatePicker } from 'react-dates';
-
 import { moviesActions } from '../../store/actions/moviesActions';
-import './styles.css';
+//import './styles.css';
 
 class Movie extends Component {
     constructor(props, context) {
@@ -24,8 +21,14 @@ class Movie extends Component {
         };
     }
 
+    componentWillMount() {
+        const { id } = this.props.match.params;
+
+        this.props.requestMovie({ id });
+    }
+
     render() {
-        const { title, premiereDate, premiereDateFocused, imageUrl, filmwebUrl } = this.state;
+        const { movie: { title, premiereDate, premiereDateFocused, imageUrl, filmwebUrl } } = this.props;
 
         return (
             <div>
@@ -38,6 +41,7 @@ class Movie extends Component {
                             type="text"
                             value={title}
                             placeholder="Enter title"
+                            onChange={e => this.setState({ title: e.target.value })}
                             disabled
                         />
                         <FormControl.Feedback />
@@ -51,6 +55,7 @@ class Movie extends Component {
                                 date={premiereDate}
                                 focused={premiereDateFocused}
                                 onFocusChange={({ focused }) => this.setState({ premiereDateFocused: focused })}
+                                isOutsideRange={() => false}
                                 disabled
                             />
                         </div>
@@ -62,9 +67,11 @@ class Movie extends Component {
                             type="text"
                             value={imageUrl}
                             placeholder="Enter image link"
+                            onChange={e => this.setState({ imageUrl: e.target.value })}
                             disabled
                         />
                         <FormControl.Feedback />
+                        <img src={imageUrl} />
                     </FormGroup>
 
                     <FormGroup controlId="movieFilmwebUrl">
@@ -73,6 +80,7 @@ class Movie extends Component {
                             type="text"
                             value={filmwebUrl}
                             placeholder="Enter filmweb link"
+                            onChange={e => this.setState({ filmwebUrl: e.target.value })}
                             disabled
                         />
                         <FormControl.Feedback />
@@ -84,6 +92,6 @@ class Movie extends Component {
 }
 
 export default connect(
-  state => state.moviesStore,
+  state => state.movieStore,
   dispatch => bindActionCreators(moviesActions, dispatch)
 )(Movie);
