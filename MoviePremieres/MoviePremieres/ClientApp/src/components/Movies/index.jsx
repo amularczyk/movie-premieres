@@ -7,7 +7,7 @@ import { moviesActions } from '../../store/actions/moviesActions';
 import './styles.css';
 
 class Movies extends Component {
-    componentWillMount() {
+    componentDidMount() {
         this.props.requestMovies();
     }
 

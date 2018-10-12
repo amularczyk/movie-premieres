@@ -9,8 +9,8 @@ import { moviesActions } from '../../store/actions/moviesActions';
 import './styles.css';
 
 class AddNewMovie extends Component {
-    constructor(props, context) {
-        super(props, context);
+    constructor(props) {
+        super(props);
 
         this.getTitleValidationState = this.getTitleValidationState.bind(this);
         this.addMovie = this.addMovie.bind(this);
@@ -34,7 +34,6 @@ class AddNewMovie extends Component {
     addMovie() {
         const { addNewMovie } = this.props;
         const { title, premiereDate, imageUrl, filmwebUrl } = this.state;
-        debugger;
 
         addNewMovie({ title, premiereDate, imageUrl, filmwebUrl });
 
@@ -53,6 +52,7 @@ class AddNewMovie extends Component {
         return (
             <div>
                 <h1>Add new movie</h1>
+                {imageUrl && <img src={imageUrl} />}
 
                 <form>
                     <FormGroup controlId="addNewMovieTile" validationState={this.getTitleValidationState()}>

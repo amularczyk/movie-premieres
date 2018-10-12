@@ -45,8 +45,6 @@ export const moviesActions = {
         const response = await fetch(url);
         const movie = await response.json();
         var premiereDate = moment(movie.premiereDate);
-        debugger;
-        
 
         dispatch({ type: getMovieSuccess, movie: { ...movie, premiereDate } });
     },

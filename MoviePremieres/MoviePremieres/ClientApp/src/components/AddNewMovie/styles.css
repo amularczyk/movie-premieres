@@ -16,3 +16,9 @@
 button {
     margin-top: 5px;
 }
+
+img {
+    height: 60px;
+    width: 50px;
+    margin-bottom: 15px;
+}
