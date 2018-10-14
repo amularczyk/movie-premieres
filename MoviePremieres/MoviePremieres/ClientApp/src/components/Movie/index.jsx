@@ -9,6 +9,19 @@ import { moviesActions } from '../../store/actions/moviesActions';
 import './styles.css';
 
 class Movie extends Component {
+    static getDerivedStateFromProps(props, state) {
+        if (props.movie.title && props.movie.title !== state.title) {
+            return {
+                title: props.movie.title,
+                premiereDate: props.movie.premiereDate,
+                imageUrl: props.movie.imageUrl,
+                filmwebUrl: props.movie.filmwebUrl
+            };
+        }
+
+        return null;
+    }
+
     constructor(props, context) {
         super(props, context);
 
@@ -25,43 +38,21 @@ class Movie extends Component {
     componentDidMount() {
         const { id } = this.props.match.params;
 
-        //this.props.requestMovie({ id });
-        this._asyncRequest = this.props.requestMovie({ id }).then(
-            externalData => {
-                this._asyncRequest = null;
-                debugger;
-                this.setState({
-                    title: externalData.title,
-                    premiereDate: externalData.premiereDate,
-                    imageUrl: externalData.imageUrl,
-                    filmwebUrl: externalData.filmwebUrl
-                });
-            }
-        );
+        this.props.requestMovie({ id });
     }
 
-    //componentDidUpdate(prevProps) {
-    //    debugger;
-    //    if (this.props.title !== prevProps.title) {
-    //        debugger;
-    //        this.setState({ title: this.props.title });
-    //    }
 
-    //    if (this.props.premiereDate !== prevProps.premiereDate) {
-    //        debugger;
-    //        this.setState({ premiereDate: this.props.premiereDate });
-    //    }
+    saveMovie() {
+        const { editExistingMovie } = this.props;
+        const { id } = this.props.match.params;
+        const { title, premiereDate, imageUrl, filmwebUrl } = this.state;
 
-    //    if (this.props.imageUrl !== prevProps.imageUrl) {
-    //        debugger;
-    //        this.setState({ imageUrl: this.props.imageUrl });
-    //    }
+        //editExistingMovie({ id, title, premiereDate, imageUrl, filmwebUrl });
 
-    //    if (this.props.filmwebUrl !== prevProps.filmwebUrl) {
-    //        debugger;
-    //        this.setState({ filmwebUrl: this.props.filmwebUrl });
-    //    }
-    //}
+        this.setState({
+            editable: false
+        });
+    }
 
     render() {
         const { title, premiereDate, premiereDateFocused, imageUrl, filmwebUrl } = this.state;
@@ -70,8 +61,9 @@ class Movie extends Component {
         return (
             <div>
                 <h1>{title}</h1>
-                <Button onClick={() => this.setState({ editable: true })}>Edit</Button>
-                {imageUrl && <img src={imageUrl} />}
+                <Button className={'no-left-margin'} onClick={() => this.setState({ editable: !editable })}>{!editable ? 'Edit' : 'Cancel'}</Button>
+                {editable && <Button onClick={() => this.saveMovie()}>Save</Button>}
+                {imageUrl && <div><img src={imageUrl} /></div>}
 
                 <form>
                     <FormGroup controlId="movieTile">
