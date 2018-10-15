@@ -16,11 +16,12 @@ namespace MoviePremieres.ListRepositories.Repositories
 
         public Task Add(Movie movie)
         {
+            movie.Id = Guid.NewGuid();
             ListDatabase.Movies.Add(movie);
             return Task.CompletedTask;
         }
 
-        public Task Add(IEnumerable<Movie> movies)
+        public Task AddMany(IEnumerable<Movie> movies)
         {
             ListDatabase.Movies.AddRange(movies);
             return Task.CompletedTask;
@@ -29,6 +30,14 @@ namespace MoviePremieres.ListRepositories.Repositories
         public Task<Movie> GetById(Guid id)
         {
             return Task.FromResult(ListDatabase.Movies.FirstOrDefault(m => m.Id == id));
+        }
+
+        public Task Update(Movie movie)
+        {
+            var movieToDelete = ListDatabase.Movies.FirstOrDefault(m => m.Id == movie.Id);
+            ListDatabase.Movies.Remove(movieToDelete);
+            ListDatabase.Movies.Add(movie);
+            return Task.CompletedTask;
         }
     }
 

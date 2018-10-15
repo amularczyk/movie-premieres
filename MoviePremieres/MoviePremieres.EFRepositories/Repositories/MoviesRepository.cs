@@ -29,7 +29,7 @@ namespace MoviePremieres.EFRepositories.Repositories
             await _dbContext.SaveChangesAsync();
         }
 
-        public async Task Add(IEnumerable<Movie> movies)
+        public async Task AddMany(IEnumerable<Movie> movies)
         {
             await _dbContext.Movies.AddRangeAsync(movies);
             await _dbContext.SaveChangesAsync();
@@ -38,6 +38,11 @@ namespace MoviePremieres.EFRepositories.Repositories
         public async Task<Movie> GetById(Guid id)
         {
             return await _dbContext.Movies.FindAsync(id);
+        }
+
+        public Task Update(Movie movie)
+        {
+            throw new NotImplementedException();
         }
     }
 }

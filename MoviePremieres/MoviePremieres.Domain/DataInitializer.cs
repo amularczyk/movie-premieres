@@ -15,7 +15,7 @@ namespace MoviePremieres.Domain
                 .CreateScope())
             {
                 var movieRepository = serviceScope.ServiceProvider.GetService<IMoviesRepository>();
-                movieRepository.Add(Movies);
+                movieRepository.AddMany(Movies);
             }
         }
 

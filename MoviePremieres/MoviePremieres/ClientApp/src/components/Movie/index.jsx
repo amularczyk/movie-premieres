@@ -9,21 +9,10 @@ import { moviesActions } from '../../store/actions/moviesActions';
 import './styles.css';
 
 class Movie extends Component {
-    static getDerivedStateFromProps(props, state) {
-        if (props.movie.title && props.movie.title !== state.title) {
-            return {
-                title: props.movie.title,
-                premiereDate: props.movie.premiereDate,
-                imageUrl: props.movie.imageUrl,
-                filmwebUrl: props.movie.filmwebUrl
-            };
-        }
-
-        return null;
-    }
-
     constructor(props, context) {
         super(props, context);
+
+        this.saveMovie = this.saveMovie.bind(this);
 
         this.state = {
             title: '',
@@ -38,16 +27,25 @@ class Movie extends Component {
     componentDidMount() {
         const { id } = this.props.match.params;
 
-        this.props.requestMovie({ id });
+        const callback = movie => {
+            this.setState({
+                title: movie.title,
+                premiereDate: movie.premiereDate,
+                imageUrl: movie.imageUrl,
+                filmwebUrl: movie.filmwebUrl
+            });
+        };
+
+        this.props.requestMovie({ id, callback });
     }
 
 
     saveMovie() {
-        const { editExistingMovie } = this.props;
+        const { updateMovie } = this.props;
         const { id } = this.props.match.params;
         const { title, premiereDate, imageUrl, filmwebUrl } = this.state;
 
-        //editExistingMovie({ id, title, premiereDate, imageUrl, filmwebUrl });
+        updateMovie({ id, title, premiereDate, imageUrl, filmwebUrl });
 
         this.setState({
             editable: false

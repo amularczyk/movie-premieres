@@ -35,5 +35,11 @@ namespace MoviePremieres.Controllers
         {
             await _moviesService.Add(movie);
         }
+
+        [HttpPut]
+        public async Task Put([FromBody] Movie movie)
+        {
+            await _moviesService.Update(movie);
+        }
     }
 }

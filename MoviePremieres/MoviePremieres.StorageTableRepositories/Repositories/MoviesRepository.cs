@@ -51,7 +51,7 @@ namespace MoviePremieres.StorageTableRepositories.Repositories
             await _table.ExecuteAsync(insertOperation);
         }
 
-        public async Task Add(IEnumerable<Movie> movies)
+        public async Task AddMany(IEnumerable<Movie> movies)
         {
             var insertOperations = new TableBatchOperation();
 
@@ -67,6 +67,11 @@ namespace MoviePremieres.StorageTableRepositories.Repositories
         }
 
         public Task<Movie> GetById(Guid id)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task Update(Movie movie)
         {
             throw new NotImplementedException();
         }

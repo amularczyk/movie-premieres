@@ -10,5 +10,6 @@ namespace MoviePremieres.Domain.Interfaces
         Task<IEnumerable<Movie>> GetAll();
         Task Add(Movie movie);
         Task<Movie> GetById(Guid id);
+        Task Update(Movie movie);
     }
 }

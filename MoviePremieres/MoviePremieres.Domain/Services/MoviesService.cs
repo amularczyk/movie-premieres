@@ -30,5 +30,10 @@ namespace MoviePremieres.Domain.Services
         {
             return await _moviesRepository.GetById(id);
         }
+
+        public async Task Update(Movie movie)
+        {
+            await _moviesRepository.Update(movie);
+        }
     }
 }

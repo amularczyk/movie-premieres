@@ -9,7 +9,8 @@ namespace MoviePremieres.Domain.Repositories
     {
         Task<IEnumerable<Movie>> GetAll();
         Task Add(Movie movie);
-        Task Add(IEnumerable<Movie> movies);
+        Task AddMany(IEnumerable<Movie> movies);
         Task<Movie> GetById(Guid id);
+        Task Update(Movie movie);
     }
 }

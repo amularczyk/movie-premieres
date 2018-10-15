@@ -41,7 +41,7 @@ namespace MoviePremieres.CosmosDBRepositories.Repositories
             await collection.InsertOneAsync(movieEntity);
         }
 
-        public async Task Add(IEnumerable<Movie> movies)
+        public async Task AddMany(IEnumerable<Movie> movies)
         {
             var movieEntities = Mapper.Map<IEnumerable<MovieEntity>>(movies);
 
@@ -50,6 +50,11 @@ namespace MoviePremieres.CosmosDBRepositories.Repositories
         }
 
         public Task<Movie> GetById(Guid id)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task Update(Movie movie)
         {
             throw new NotImplementedException();
         }
