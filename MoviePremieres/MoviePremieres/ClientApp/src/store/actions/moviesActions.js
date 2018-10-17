@@ -1,4 +1,4 @@
-﻿import moment from 'moment';
+import moment from 'moment';
 import {
   getMoviesRequest,
   getMoviesSuccess,
@@ -50,7 +50,9 @@ export const moviesActions = {
         body: JSON.stringify(movie),
       });
 
-    dispatch({ type: addNewMovieSuccess });
+    if (response.status === 200) {
+      dispatch({ type: addNewMovieSuccess });
+    }
   },
 
   updateMovie: movie => async (dispatch) => {
@@ -67,6 +69,8 @@ export const moviesActions = {
         body: JSON.stringify(movie),
       });
 
-    dispatch({ type: updateMovieSuccess });
+    if (response.status === 200) {
+      dispatch({ type: updateMovieSuccess });
+    }
   },
 };

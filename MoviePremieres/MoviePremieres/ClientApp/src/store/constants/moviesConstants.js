@@ -1,4 +1,4 @@
-﻿export const getMoviesRequest = 'GET_MOVIES_REQUEST';
+export const getMoviesRequest = 'GET_MOVIES_REQUEST';
 export const getMoviesSuccess = 'GET_MOVIES_SUCCESS';
 
 export const getMovieRequest = 'GET_MOVIE_REQUEST';

@@ -7,8 +7,9 @@ import {
 import 'react-dates/initialize';
 import 'react-dates/lib/css/_datepicker.css';
 import { SingleDatePicker } from 'react-dates';
+import PropTypes from 'prop-types';
 import { moviesActions } from '../../store/actions/moviesActions';
-import './styles.css';
+import { styles } from './styles.css';
 
 class Movie extends Component {
   constructor(props, context) {
@@ -27,7 +28,7 @@ class Movie extends Component {
   }
 
   componentDidMount() {
-    const { id } = this.props.match.params;
+    const { match: { params: { id } }, requestMovie } = this.props;
 
     const callback = (movie) => {
       this.setState({
@@ -38,12 +39,11 @@ class Movie extends Component {
       });
     };
 
-    this.props.requestMovie({ id, callback });
+    requestMovie({ id, callback });
   }
 
   saveMovie() {
-    const { updateMovie } = this.props;
-    const { id } = this.props.match.params;
+    const { match: { params: { id } }, updateMovie } = this.props;
     const {
       title, premiereDate, imageUrl, filmwebUrl,
     } = this.state;
@@ -68,7 +68,7 @@ class Movie extends Component {
     const { editable } = this.state;
 
     return (
-      <div>
+      <div className={`${styles}`}>
         <h1>{title}</h1>
         <Button
           className="no-left-margin"
@@ -139,6 +139,14 @@ class Movie extends Component {
     );
   }
 }
+
+Movie.propTypes = {
+  requestMovie: PropTypes.func.isRequired,
+  updateMovie: PropTypes.func.isRequired,
+  match: PropTypes.shape({
+    path: PropTypes.string, url: PropTypes.string, isExact: PropTypes.bool, params: PropTypes.object,
+  }).isRequired,
+};
 
 export default connect(
   state => state.movieStore,

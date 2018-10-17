@@ -1,11 +1,12 @@
-﻿import {
+import {
   getMoviesRequest,
   getMoviesSuccess,
 } from '../constants/moviesConstants';
 
 const initialState = { movies: [], isLoading: false };
 
-export default function reducer(state, action) {
+// eslint-disable-next-line import/prefer-default-export
+export const reducer = (state, action) => {
   const newState = state || initialState;
 
   if (action.type === getMoviesRequest) {
@@ -24,4 +25,4 @@ export default function reducer(state, action) {
   }
 
   return newState;
-}
+};

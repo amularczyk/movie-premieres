@@ -7,8 +7,9 @@ import {
 import 'react-dates/initialize';
 import 'react-dates/lib/css/_datepicker.css';
 import { SingleDatePicker } from 'react-dates';
+import PropTypes from 'prop-types';
 import { moviesActions } from '../../store/actions/moviesActions';
-import './styles.css';
+import { styles } from './styles.css';
 
 class AddNewMovie extends Component {
   constructor(props) {
@@ -27,9 +28,11 @@ class AddNewMovie extends Component {
   }
 
   getTitleValidationState() {
-    const length = this.state.title.length;
-    if (length > 2) return 'success';
-    if (length > 0) return 'error';
+    const { title } = this.state;
+
+    if (title.length > 2) return 'success';
+    if (title.length > 0) return 'error';
+
     return null;
   }
 
@@ -58,7 +61,7 @@ class AddNewMovie extends Component {
     } = this.state;
 
     return (
-      <div>
+      <div className={`${styles}`}>
         <h1>Add new movie</h1>
         {imageUrl && <img src={imageUrl} />}
 
@@ -114,6 +117,10 @@ class AddNewMovie extends Component {
     );
   }
 }
+
+AddNewMovie.propTypes = {
+  addNewMovie: PropTypes.func.isRequired,
+};
 
 export default connect(
   state => state.moviesStore,

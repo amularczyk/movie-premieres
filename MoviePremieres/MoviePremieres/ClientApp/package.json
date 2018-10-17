@@ -7,10 +7,11 @@
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject",
-    "lint": "eslint --cache --ignore-pattern .gitignore --color --quiet src"
+    "lint": "eslint --ignore-pattern .gitignore --color --quiet src"
   },
   "dependencies": {
     "bootstrap": "^3.3.7",
+    "history": "^4.7.2",
     "moment": "^2.22.2",
     "prop-types": "^15.6.2",
     "react": "^16.5.2",
