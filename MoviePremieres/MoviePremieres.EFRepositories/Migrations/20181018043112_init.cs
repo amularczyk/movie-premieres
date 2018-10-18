@@ -1,5 +1,4 @@
 ﻿using System;
-using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace MoviePremieres.EFRepositories.Migrations
@@ -12,10 +11,11 @@ namespace MoviePremieres.EFRepositories.Migrations
                 name: "Movies",
                 columns: table => new
                 {
-                    Id = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                    Id = table.Column<Guid>(nullable: false),
                     Title = table.Column<string>(nullable: true),
-                    Premiere = table.Column<DateTimeOffset>(nullable: false)
+                    PremiereDate = table.Column<DateTimeOffset>(nullable: false),
+                    ImageUrl = table.Column<string>(nullable: true),
+                    FilmwebUrl = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {

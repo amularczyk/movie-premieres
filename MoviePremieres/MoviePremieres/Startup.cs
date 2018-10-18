@@ -10,7 +10,9 @@ using MoviePremieres.CosmosDBRepositories.Mappers;
 using MoviePremieres.Domain;
 using MoviePremieres.Domain.Interfaces;
 using MoviePremieres.Domain.Services;
+using MoviePremieres.EFRepositories;
 using MoviePremieres.ListRepositories;
+using MoviePremieres.StorageTableRepositories;
 
 namespace MoviePremieres
 {
@@ -55,9 +57,9 @@ namespace MoviePremieres
 
         private void RegisterRepositories(IServiceCollection services)
         {
-            services.RegisterListRepositories();
+            //services.RegisterListRepositories();
             //services.RegisterEFRepositories(Configuration);
-            //services.RegisterAzureCosmosDBRepositories(Configuration);
+            services.RegisterAzureStorageRepositories(Configuration);
             //services.RegisterAzureCosmosDBRepositories(Configuration);
         }
 
