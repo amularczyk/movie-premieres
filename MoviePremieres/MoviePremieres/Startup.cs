@@ -6,7 +6,6 @@ using Microsoft.AspNetCore.SpaServices.ReactDevelopmentServer;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using MoviePremieres.CosmosDBRepositories;
-using MoviePremieres.CosmosDBRepositories.Mappers;
 using MoviePremieres.Domain;
 using MoviePremieres.Domain.Interfaces;
 using MoviePremieres.Domain.Services;
@@ -47,7 +46,11 @@ namespace MoviePremieres
 
         private void RegisterMappings()
         {
-            Mapper.Initialize(cfg => { cfg.AddProfile<MovieProfile>(); });
+            Mapper.Initialize(cfg =>
+            {
+                cfg.AddProfile<CosmosDBRepositories.Mappers.MovieProfile>();
+                cfg.AddProfile<StorageTableRepositories.Mappers.MovieProfile>();
+            });
         }
 
         private void RegisterServices(IServiceCollection services)
@@ -57,9 +60,9 @@ namespace MoviePremieres
 
         private void RegisterRepositories(IServiceCollection services)
         {
-            //services.RegisterListRepositories();
+            services.RegisterListRepositories();
             //services.RegisterEFRepositories(Configuration);
-            services.RegisterAzureStorageRepositories(Configuration);
+            //services.RegisterAzureStorageRepositories(Configuration);
             //services.RegisterAzureCosmosDBRepositories(Configuration);
         }
 

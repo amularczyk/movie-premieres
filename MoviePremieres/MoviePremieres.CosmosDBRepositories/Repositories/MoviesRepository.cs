@@ -24,13 +24,13 @@ namespace MoviePremieres.CosmosDBRepositories.Repositories
             _azureCosmosDbConfig = azureCosmosDbConfig.Value;
         }
 
-        public Task<IEnumerable<Movie>> GetAll()
+        public async Task<IEnumerable<Movie>> GetAll()
         {
             var collection = GetCollection();
-            var movieEntities = collection.Find(new BsonDocument()).ToList();
+            var movieEntities = (await collection.FindAsync(new BsonDocument())).ToList();
 
             var movies = Mapper.Map<IEnumerable<Movie>>(movieEntities);
-            return Task.FromResult(movies);
+            return movies;
         }
 
         public async Task Add(Movie movie)
@@ -49,14 +49,21 @@ namespace MoviePremieres.CosmosDBRepositories.Repositories
             await collection.InsertManyAsync(movieEntities);
         }
 
-        public Task<Movie> GetById(Guid id)
+        public async Task<Movie> GetById(Guid id)
         {
-            throw new NotImplementedException();
+            var collection = GetCollection();
+            var movieEntity = (await collection.FindAsync(e => e.Id == id)).FirstOrDefault();
+
+            var movie = Mapper.Map<Movie>(movieEntity);
+            return movie;
         }
 
-        public Task Update(Movie movie)
+        public async Task Update(Movie movie)
         {
-            throw new NotImplementedException();
+            var movieEntity = Mapper.Map<MovieEntity>(movie);
+
+            var collection = GetCollection();
+            await collection.FindOneAndReplaceAsync(e => e.Id == movie.Id, movieEntity);
         }
 
         private IMongoCollection<MovieEntity> GetCollection()

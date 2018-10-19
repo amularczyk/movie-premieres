@@ -53,25 +53,17 @@ namespace MoviePremieres.StorageTableRepositories.Repositories
 
         public async Task AddMany(IEnumerable<Movie> movies)
         {
-            try
+            var insertOperations = new TableBatchOperation();
+
+            var movieEntities = Mapper.Map<IEnumerable<MovieEntity>>(movies);
+            foreach (var movieEntity in movieEntities)
             {
-                var insertOperations = new TableBatchOperation();
-
-                var movieEntities = Mapper.Map<IEnumerable<MovieEntity>>(movies);
-                foreach (var movieEntity in movieEntities)
-                {
-                    movieEntity.PartitionKey = _partitionKey;
-                    insertOperations.Add(TableOperation.Insert(movieEntity));
-                }
-
-
-                await _table.ExecuteBatchAsync(insertOperations);
+                movieEntity.PartitionKey = _partitionKey;
+                insertOperations.Add(TableOperation.Insert(movieEntity));
             }
-            catch (Exception e)
-            {
-                Console.WriteLine(e);
-                throw;
-            }
+
+
+            await _table.ExecuteBatchAsync(insertOperations);
         }
 
         public async Task<Movie> GetById(Guid id)
@@ -87,7 +79,7 @@ namespace MoviePremieres.StorageTableRepositories.Repositories
             var retrieveOperation = TableOperation.Retrieve<MovieEntity>(_partitionKey, movie.Id.ToString());
             var retrievedResult = await _table.ExecuteAsync(retrieveOperation);
 
-            var updateEntity = (MovieEntity)retrievedResult.Result;
+            var updateEntity = (MovieEntity) retrievedResult.Result;
             if (updateEntity != null)
             {
                 Mapper.Map(movie, updateEntity);
