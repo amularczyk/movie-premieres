@@ -13,7 +13,7 @@ namespace MoviePremieres.EFRepositories
         {
             services.AddTransient<IMoviesRepository, MoviesRepository>();
 
-            var connectionString = configuration.GetConnectionString("AzureConnection");
+            var connectionString = configuration.GetConnectionString("SqlServerConnection");
 
             services
                 .AddEntityFrameworkSqlServer()
