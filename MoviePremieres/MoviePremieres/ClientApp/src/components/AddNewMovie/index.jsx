@@ -8,6 +8,7 @@ import 'react-dates/initialize';
 import 'react-dates/lib/css/_datepicker.css';
 import { SingleDatePicker } from 'react-dates';
 import PropTypes from 'prop-types';
+import moment from 'moment';
 import { moviesActions } from '../../store/actions/moviesActions';
 import { styles } from './styles.css';
 
@@ -15,6 +16,7 @@ class AddNewMovie extends Component {
   constructor(props) {
     super(props);
 
+    this.onDateChange = this.onDateChange.bind(this);
     this.getTitleValidationState = this.getTitleValidationState.bind(this);
     this.addMovie = this.addMovie.bind(this);
 
@@ -25,6 +27,15 @@ class AddNewMovie extends Component {
       imageUrl: '',
       filmwebUrl: '',
     };
+  }
+
+  onDateChange(date) {
+    const dateValue = moment.utc({
+      year: date.year(),
+      month: date.month(),
+      day: date.date(),
+    });
+    this.setState({ premiereDate: dateValue });
   }
 
   getTitleValidationState() {
@@ -63,7 +74,7 @@ class AddNewMovie extends Component {
     return (
       <div className={`${styles}`}>
         <h1>Add new movie</h1>
-        {imageUrl && <img src={imageUrl} />}
+        {imageUrl && <img src={imageUrl} alt="Movie" />}
 
         <form>
           <FormGroup controlId="addNewMovieTile" validationState={this.getTitleValidationState()}>
@@ -81,7 +92,7 @@ class AddNewMovie extends Component {
             <ControlLabel>Premiere date</ControlLabel>
             <div>
               <SingleDatePicker
-                onDateChange={date => this.setState({ premiereDate: date })}
+                onDateChange={this.onDateChange}
                 date={premiereDate}
                 focused={premiereDateFocused}
                 onFocusChange={({ focused }) => this.setState({ premiereDateFocused: focused })}

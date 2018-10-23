@@ -8,6 +8,7 @@ import 'react-dates/initialize';
 import 'react-dates/lib/css/_datepicker.css';
 import { SingleDatePicker } from 'react-dates';
 import PropTypes from 'prop-types';
+import moment from 'moment';
 import { moviesActions } from '../../store/actions/moviesActions';
 import { styles } from './styles.css';
 
@@ -15,6 +16,7 @@ class Movie extends Component {
   constructor(props, context) {
     super(props, context);
 
+    this.onDateChange = this.onDateChange.bind(this);
     this.saveMovie = this.saveMovie.bind(this);
 
     this.state = {
@@ -40,6 +42,15 @@ class Movie extends Component {
     };
 
     requestMovie({ id, callback });
+  }
+
+  onDateChange(date) {
+    const dateValue = moment.utc({
+      year: date.year(),
+      month: date.month(),
+      day: date.date(),
+    });
+    this.setState({ premiereDate: dateValue });
   }
 
   saveMovie() {
@@ -79,7 +90,7 @@ class Movie extends Component {
         {editable && <Button onClick={() => this.saveMovie()}>Save</Button>}
         {imageUrl && (
           <div>
-            <img src={imageUrl} />
+            <img src={imageUrl} alt={title} />
           </div>
         )}
 
@@ -100,11 +111,10 @@ class Movie extends Component {
             <ControlLabel>Premiere date</ControlLabel>
             <div>
               <SingleDatePicker
-                onDateChange={date => this.setState({ premiereDate: date })}
+                onDateChange={this.onDateChange}
                 date={premiereDate}
                 focused={premiereDateFocused}
-                onFocusChange={({ focused }) => this.setState({ premiereDateFocused: focused })
-                }
+                onFocusChange={({ focused }) => this.setState({ premiereDateFocused: focused })}
                 isOutsideRange={() => false}
                 disabled={!editable}
               />
@@ -144,7 +154,10 @@ Movie.propTypes = {
   requestMovie: PropTypes.func.isRequired,
   updateMovie: PropTypes.func.isRequired,
   match: PropTypes.shape({
-    path: PropTypes.string, url: PropTypes.string, isExact: PropTypes.bool, params: PropTypes.object,
+    path: PropTypes.string,
+    url: PropTypes.string,
+    isExact: PropTypes.bool,
+    params: PropTypes.object,
   }).isRequired,
 };
 
