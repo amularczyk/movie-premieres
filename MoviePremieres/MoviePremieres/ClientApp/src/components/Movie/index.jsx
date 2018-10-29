@@ -10,7 +10,7 @@ import { SingleDatePicker } from 'react-dates';
 import PropTypes from 'prop-types';
 import moment from 'moment';
 import { moviesActions } from '../../store/actions/moviesActions';
-import { styles } from './styles.css';
+import './styles.css';
 
 class Movie extends Component {
   constructor(props, context) {
@@ -79,18 +79,18 @@ class Movie extends Component {
     const { editable } = this.state;
 
     return (
-      <div className={`${styles}`}>
+      <div>
         <h1>{title}</h1>
         <Button
-          className="no-left-margin"
+          className="no-left-margin bottom-margin"
           onClick={() => this.setState({ editable: !editable })}
         >
           {!editable ? 'Edit' : 'Cancel'}
         </Button>
-        {editable && <Button onClick={() => this.saveMovie()}>Save</Button>}
+        {editable && <Button className="bottom-margin" onClick={() => this.saveMovie()}>Save</Button>}
         {imageUrl && (
           <div>
-            <img src={imageUrl} alt={title} />
+            <img className="small-image margin-top-bottom" src={imageUrl} alt={title} />
           </div>
         )}
 

@@ -29,7 +29,7 @@ class Movies extends Component {
           <tbody>
             { movies.map(movie => (
               <tr key={movie.id}>
-                <td><img src={movie.imageUrl} alt={movie.title} /></td>
+                <td><img className="small-image" src={movie.imageUrl} alt={movie.title} /></td>
                 <td><Link to={`/movie/${movie.id}`}>{movie.title}</Link></td>
                 <td>{new Date(movie.premiereDate).toLocaleDateString('en-GB')}</td>
               </tr>

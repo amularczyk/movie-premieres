@@ -74,7 +74,7 @@ class AddNewMovie extends Component {
     return (
       <div className={`${styles}`}>
         <h1>Add new movie</h1>
-        {imageUrl && <img src={imageUrl} alt="Movie" />}
+        {imageUrl && <img className="small-image" src={imageUrl} alt="Movie" />}
 
         <form>
           <FormGroup controlId="addNewMovieTile" validationState={this.getTitleValidationState()}>
@@ -123,7 +123,7 @@ class AddNewMovie extends Component {
             <FormControl.Feedback />
           </FormGroup>
         </form>
-        <Button type="submit" onClick={() => this.addMovie()}>Add new movie</Button>
+        <Button className="margin-top" type="submit" onClick={() => this.addMovie()}>Add new movie</Button>
       </div>
     );
   }
