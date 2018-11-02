@@ -13,7 +13,14 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MoviePremieres.EFRepositori
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MoviePremieres.StorageTableRepositories", "MoviePremieres.StorageTableRepositories\MoviePremieres.StorageTableRepositories.csproj", "{CC6C5871-599B-4415-8F1E-C401F2F16F8A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MoviePremieres.CosmosDBRepositories", "MoviePremieres.CosmosDBRepositories\MoviePremieres.CosmosDBRepositories.csproj", "{466E14C5-CBDD-40D5-9A2C-6EA3D7793CD1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MoviePremieres.CosmosDBRepositories", "MoviePremieres.CosmosDBRepositories\MoviePremieres.CosmosDBRepositories.csproj", "{466E14C5-CBDD-40D5-9A2C-6EA3D7793CD1}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Scripts", "Scripts", "{79F103DF-1760-454C-B4D7-0A9525889574}"
+	ProjectSection(SolutionItems) = preProject
+		Scripts\Create.local.ps1 = Scripts\Create.local.ps1
+		Scripts\Create.ps1 = Scripts\Create.ps1
+		Scripts\Delete.ps1 = Scripts\Delete.ps1
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
