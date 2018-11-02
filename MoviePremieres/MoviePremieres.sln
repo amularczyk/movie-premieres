@@ -18,7 +18,11 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Scripts", "Scripts", "{79F103DF-1760-454C-B4D7-0A9525889574}"
 	ProjectSection(SolutionItems) = preProject
 		Scripts\Create.local.ps1 = Scripts\Create.local.ps1
-		Scripts\Create.ps1 = Scripts\Create.ps1
+		Scripts\CreateCosmoDb_MongoDb.ps1 = Scripts\CreateCosmoDb_MongoDb.ps1
+		Scripts\CreateDeployToAppService.ps1 = Scripts\CreateDeployToAppService.ps1
+		Scripts\CreateResourceGroup.ps1 = Scripts\CreateResourceGroup.ps1
+		Scripts\CreateSqlServer.ps1 = Scripts\CreateSqlServer.ps1
+		Scripts\CreateStorageTable.ps1 = Scripts\CreateStorageTable.ps1
 		Scripts\Delete.ps1 = Scripts\Delete.ps1
 	EndProjectSection
 EndProject
