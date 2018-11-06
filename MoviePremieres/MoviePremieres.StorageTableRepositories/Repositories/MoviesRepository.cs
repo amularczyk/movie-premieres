@@ -13,10 +13,12 @@ namespace MoviePremieres.StorageTableRepositories.Repositories
     {
         private readonly string _partitionKey = "movie";
         private readonly CloudTable _table;
+        private readonly IMapper _mapper;
 
-        public MoviesRepository(CloudTable table)
+        public MoviesRepository(CloudTable table, IMapper mapper)
         {
             _table = table;
+            _mapper = mapper;
         }
 
         public async Task<IEnumerable<Movie>> GetAll()
@@ -34,7 +36,7 @@ namespace MoviePremieres.StorageTableRepositories.Repositories
 
                 foreach (var entity in resultSegment.Results)
                 {
-                    movies.Add(Mapper.Map<Movie>(entity));
+                    movies.Add(_mapper.Map<Movie>(entity));
                 }
             } while (token != null);
 
@@ -43,7 +45,7 @@ namespace MoviePremieres.StorageTableRepositories.Repositories
 
         public async Task Add(Movie movie)
         {
-            var movieEntity = Mapper.Map<MovieEntity>(movie);
+            var movieEntity = _mapper.Map<MovieEntity>(movie);
             movieEntity.PartitionKey = _partitionKey;
 
             var insertOperation = TableOperation.Insert(movieEntity);
@@ -55,7 +57,7 @@ namespace MoviePremieres.StorageTableRepositories.Repositories
         {
             var insertOperations = new TableBatchOperation();
 
-            var movieEntities = Mapper.Map<IEnumerable<MovieEntity>>(movies);
+            var movieEntities = _mapper.Map<IEnumerable<MovieEntity>>(movies);
             foreach (var movieEntity in movieEntities)
             {
                 movieEntity.PartitionKey = _partitionKey;
@@ -71,7 +73,7 @@ namespace MoviePremieres.StorageTableRepositories.Repositories
             var retrieveOperation = TableOperation.Retrieve<MovieEntity>(_partitionKey, id.ToString());
             var retrievedResult = await _table.ExecuteAsync(retrieveOperation);
 
-            return Mapper.Map<Movie>((MovieEntity) retrievedResult.Result);
+            return _mapper.Map<Movie>((MovieEntity) retrievedResult.Result);
         }
 
         public async Task Update(Movie movie)
@@ -82,7 +84,7 @@ namespace MoviePremieres.StorageTableRepositories.Repositories
             var updateEntity = (MovieEntity) retrievedResult.Result;
             if (updateEntity != null)
             {
-                Mapper.Map(movie, updateEntity);
+                _mapper.Map(movie, updateEntity);
 
                 var updateOperation = TableOperation.Replace(updateEntity);
                 await _table.ExecuteAsync(updateOperation);

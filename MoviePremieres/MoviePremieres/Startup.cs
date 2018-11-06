@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+using System.Reflection;
 using AutoMapper;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -5,7 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.SpaServices.ReactDevelopmentServer;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using MoviePremieres.CosmosDBRepositories.Mappers;
+using MoviePremieres.CosmosDBRepositories.Profiles;
 using MoviePremieres.Domain;
 using MoviePremieres.Domain.Interfaces;
 using MoviePremieres.Domain.Services;
@@ -32,19 +34,19 @@ namespace MoviePremieres
 
             RegisterServices(services);
             RegisterRepositories(services);
-            RegisterMappings();
+            services.AddAutoMapper(GetAssembliesForAutoMapper());
 
             // In production, the React files will be served from this directory
             services.AddSpaStaticFiles(configuration => { configuration.RootPath = "ClientApp/build"; });
         }
 
-        private void RegisterMappings()
+        private static Assembly[] GetAssembliesForAutoMapper()
         {
-            Mapper.Initialize(cfg =>
+            return new[]
             {
-                cfg.AddProfile<MovieProfile>();
-                cfg.AddProfile<StorageTableRepositories.Mappers.MovieProfile>();
-            });
+                typeof(StartupConfiguration).GetTypeInfo().Assembly,
+                typeof(StorageTableRepositories.StartupConfiguration).GetTypeInfo().Assembly
+            };
         }
 
         private void RegisterServices(IServiceCollection services)

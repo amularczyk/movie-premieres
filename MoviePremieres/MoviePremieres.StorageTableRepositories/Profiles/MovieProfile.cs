@@ -3,7 +3,7 @@ using AutoMapper;
 using MoviePremieres.Domain.Models;
 using MoviePremieres.StorageTableRepositories.Models;
 
-namespace MoviePremieres.StorageTableRepositories.Mappers
+namespace MoviePremieres.StorageTableRepositories.Profiles
 {
     public class MovieProfile : Profile
     {

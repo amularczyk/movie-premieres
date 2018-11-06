@@ -16,11 +16,17 @@ namespace MoviePremieres.CosmosDBRepositories.Repositories
     {
         private readonly AzureCosmosDbConfig _azureCosmosDbConfig;
         private readonly string _collectionName = "Movies";
+        private readonly IMapper _mapper;
         private readonly MongoClient _mongoClient;
 
-        public MoviesRepository(MongoClient mongoClient, IOptions<AzureCosmosDbConfig> azureCosmosDbConfig)
+        public MoviesRepository(
+            MongoClient mongoClient,
+            IOptions<AzureCosmosDbConfig> azureCosmosDbConfig,
+            IMapper mapper
+        )
         {
             _mongoClient = mongoClient;
+            _mapper = mapper;
             _azureCosmosDbConfig = azureCosmosDbConfig.Value;
         }
 
@@ -29,13 +35,13 @@ namespace MoviePremieres.CosmosDBRepositories.Repositories
             var collection = GetCollection();
             var movieEntities = (await collection.FindAsync(new BsonDocument())).ToList();
 
-            var movies = Mapper.Map<IEnumerable<Movie>>(movieEntities);
+            var movies = _mapper.Map<IEnumerable<Movie>>(movieEntities);
             return movies;
         }
 
         public async Task Add(Movie movie)
         {
-            var movieEntity = Mapper.Map<MovieEntity>(movie);
+            var movieEntity = _mapper.Map<MovieEntity>(movie);
 
             var collection = GetCollection();
             await collection.InsertOneAsync(movieEntity);
@@ -43,7 +49,7 @@ namespace MoviePremieres.CosmosDBRepositories.Repositories
 
         public async Task AddMany(IEnumerable<Movie> movies)
         {
-            var movieEntities = Mapper.Map<IEnumerable<MovieEntity>>(movies);
+            var movieEntities = _mapper.Map<IEnumerable<MovieEntity>>(movies);
 
             var collection = GetCollection();
             await collection.InsertManyAsync(movieEntities);
@@ -54,13 +60,13 @@ namespace MoviePremieres.CosmosDBRepositories.Repositories
             var collection = GetCollection();
             var movieEntity = (await collection.FindAsync(e => e.Id == id)).FirstOrDefault();
 
-            var movie = Mapper.Map<Movie>(movieEntity);
+            var movie = _mapper.Map<Movie>(movieEntity);
             return movie;
         }
 
         public async Task Update(Movie movie)
         {
-            var movieEntity = Mapper.Map<MovieEntity>(movie);
+            var movieEntity = _mapper.Map<MovieEntity>(movie);
 
             var collection = GetCollection();
             await collection.FindOneAndReplaceAsync(e => e.Id == movie.Id, movieEntity);

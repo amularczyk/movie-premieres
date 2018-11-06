@@ -2,7 +2,7 @@
 using MoviePremieres.CosmosDBRepositories.Models;
 using MoviePremieres.Domain.Models;
 
-namespace MoviePremieres.CosmosDBRepositories.Mappers
+namespace MoviePremieres.CosmosDBRepositories.Profiles
 {
     public class MovieProfile : Profile
     {
