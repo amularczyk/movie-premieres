@@ -82,15 +82,15 @@ class Movie extends Component {
       <div>
         <h1>{title}</h1>
         <Button
-          className="no-left-margin bottom-margin"
+          className="no-left-margin button-margins"
           onClick={() => this.setState({ editable: !editable })}
         >
           {!editable ? 'Edit' : 'Cancel'}
         </Button>
-        {editable && <Button className="bottom-margin" onClick={() => this.saveMovie()}>Save</Button>}
-        {imageUrl && (
+        {editable && <Button className="button-margins" onClick={() => this.saveMovie()}>Save</Button>}
+        {!editable && imageUrl && (
           <div>
-            <img className="small-image margin-top-bottom" src={imageUrl} alt={title} />
+            <img className="small-image margin-bottom-big" src={imageUrl} alt={title} />
           </div>
         )}
 
@@ -121,7 +121,13 @@ class Movie extends Component {
             </div>
           </FormGroup>
 
-          <FormGroup controlId="movieImageUrl">
+          {editable && imageUrl && (
+            <div>
+              <img className="small-image margin-bottom-medium" src={imageUrl} alt={title} />
+            </div>
+          )}
+
+          {editable && <FormGroup controlId="movieImageUrl">
             <ControlLabel>Image link</ControlLabel>
             <FormControl
               type="text"
@@ -131,9 +137,9 @@ class Movie extends Component {
               disabled={!editable}
             />
             <FormControl.Feedback />
-          </FormGroup>
+          </FormGroup> }
 
-          <FormGroup controlId="movieFilmwebUrl">
+          {editable ? <FormGroup controlId="movieFilmwebUrl">
             <ControlLabel>Filmweb link</ControlLabel>
             <FormControl
               type="text"
@@ -143,7 +149,9 @@ class Movie extends Component {
               disabled={!editable}
             />
             <FormControl.Feedback />
-          </FormGroup>
+          </FormGroup> :
+          <Button bsStyle="link" className={'no-padding'}><a href={filmwebUrl}>Filmweb link</a></Button>          
+          }
         </form>
       </div>
     );
