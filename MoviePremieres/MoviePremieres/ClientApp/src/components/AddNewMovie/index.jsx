@@ -10,7 +10,7 @@ import { SingleDatePicker } from 'react-dates';
 import PropTypes from 'prop-types';
 import moment from 'moment';
 import { moviesActions } from '../../store/actions/moviesActions';
-import { styles } from './styles.css';
+import './styles.css';
 
 class AddNewMovie extends Component {
   constructor(props) {
@@ -72,7 +72,7 @@ class AddNewMovie extends Component {
     } = this.state;
 
     return (
-      <div className={`${styles}`}>
+      <div>
         <h1>Add new movie</h1>
         {imageUrl && <img className="small-image" src={imageUrl} alt="Movie" />}
 
@@ -123,7 +123,7 @@ class AddNewMovie extends Component {
             <FormControl.Feedback />
           </FormGroup>
         </form>
-        <Button className="margin-top" type="submit" onClick={() => this.addMovie()}>Add new movie</Button>
+        <Button className="margin-top" type="submit" onClick={this.addMovie}>Add new movie</Button>
       </div>
     );
   }

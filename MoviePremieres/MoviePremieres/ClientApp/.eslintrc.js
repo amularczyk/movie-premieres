@@ -1,5 +1,6 @@
 module.exports = {
     "extends": "airbnb",
+    "parser": "babel-eslint",
     "rules": {
       "react/prefer-stateless-function": 0,
   },

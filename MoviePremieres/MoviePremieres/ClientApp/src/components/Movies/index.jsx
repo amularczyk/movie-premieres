@@ -5,7 +5,7 @@ import { Table } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { moviesActions } from '../../store/actions/moviesActions';
-import { styles } from './styles.css';
+import './styles.css';
 
 class Movies extends Component {
   componentDidMount() {
@@ -16,7 +16,7 @@ class Movies extends Component {
   render() {
     const { movies } = this.props;
     return (
-      <div className={`${styles}`}>
+      <div>
         <h1>Movies premieres</h1>
         <Table>
           <thead>

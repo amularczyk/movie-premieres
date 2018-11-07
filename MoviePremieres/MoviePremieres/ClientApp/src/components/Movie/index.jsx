@@ -18,6 +18,8 @@ class Movie extends Component {
 
     this.onDateChange = this.onDateChange.bind(this);
     this.saveMovie = this.saveMovie.bind(this);
+    this.cancelEdit = this.cancelEdit.bind(this);
+    this.editMovieOnClick = this.editMovieOnClick.bind(this);
 
     this.state = {
       title: '',
@@ -26,6 +28,10 @@ class Movie extends Component {
       imageUrl: '',
       filmwebUrl: '',
       editable: false,
+      oldTitle: '',
+      oldPremiereDate: null,
+      oldImageUrl: '',
+      oldFilmwebUrl: '',
     };
   }
 
@@ -38,6 +44,10 @@ class Movie extends Component {
         premiereDate: movie.premiereDate,
         imageUrl: movie.imageUrl,
         filmwebUrl: movie.filmwebUrl,
+        oldTitle: movie.title,
+        oldPremiereDate: movie.premiereDate,
+        oldImageUrl: movie.imageUrl,
+        oldFilmwebUrl: movie.filmwebUrl,
       });
     };
 
@@ -65,7 +75,30 @@ class Movie extends Component {
 
     this.setState({
       editable: false,
+      oldTitle: title,
+      oldPremiereDate: premiereDate,
+      oldImageUrl: imageUrl,
+      oldFilmwebUrl: filmwebUrl,
     });
+  }
+
+  cancelEdit() {
+    const {
+      oldTitle, oldPremiereDate, oldImageUrl, oldFilmwebUrl, editable,
+    } = this.state;
+
+    this.setState({
+      editable: !editable,
+      title: oldTitle,
+      premiereDate: oldPremiereDate,
+      imageUrl: oldImageUrl,
+      filmwebUrl: oldFilmwebUrl,
+    });
+  }
+
+  editMovieOnClick() {
+    const { editable } = this.state;
+    this.setState({ editable: !editable });
   }
 
   render() {
@@ -81,13 +114,23 @@ class Movie extends Component {
     return (
       <div>
         <h1>{title}</h1>
-        <Button
-          className="no-left-margin button-margins"
-          onClick={() => this.setState({ editable: !editable })}
-        >
-          {!editable ? 'Edit' : 'Cancel'}
-        </Button>
-        {editable && <Button className="button-margins" onClick={() => this.saveMovie()}>Save</Button>}
+        {!editable && (
+          <Button
+            className="no-left-margin button-margins"
+            onClick={this.editMovieOnClick}
+          >
+            {'Edit'}
+          </Button>
+        )}
+        {editable && (
+          <Button
+            className="no-left-margin button-margins"
+            onClick={this.cancelEdit}
+          >
+            {'Cancel'}
+          </Button>
+        ) }
+        {editable && <Button className="button-margins" onClick={this.saveMovie}>Save</Button>}
         {!editable && imageUrl && (
           <div>
             <img className="small-image margin-bottom-big" src={imageUrl} alt={title} />
@@ -127,30 +170,34 @@ class Movie extends Component {
             </div>
           )}
 
-          {editable && <FormGroup controlId="movieImageUrl">
-            <ControlLabel>Image link</ControlLabel>
-            <FormControl
-              type="text"
-              value={imageUrl}
-              placeholder="Enter image link"
-              onChange={e => this.setState({ imageUrl: e.target.value })}
-              disabled={!editable}
-            />
-            <FormControl.Feedback />
-          </FormGroup> }
+          {editable && (
+            <FormGroup controlId="movieImageUrl">
+              <ControlLabel>Image link</ControlLabel>
+              <FormControl
+                type="text"
+                value={imageUrl}
+                placeholder="Enter image link"
+                onChange={e => this.setState({ imageUrl: e.target.value })}
+                disabled={!editable}
+              />
+              <FormControl.Feedback />
+            </FormGroup>
+          )}
 
-          {editable ? <FormGroup controlId="movieFilmwebUrl">
-            <ControlLabel>Filmweb link</ControlLabel>
-            <FormControl
-              type="text"
-              value={filmwebUrl}
-              placeholder="Enter filmweb link"
-              onChange={e => this.setState({ filmwebUrl: e.target.value })}
-              disabled={!editable}
-            />
-            <FormControl.Feedback />
-          </FormGroup> :
-          <Button bsStyle="link" className={'no-padding'}><a href={filmwebUrl}>Filmweb link</a></Button>          
+          {editable ? (
+            <FormGroup controlId="movieFilmwebUrl">
+              <ControlLabel>Filmweb link</ControlLabel>
+              <FormControl
+                type="text"
+                value={filmwebUrl}
+                placeholder="Enter filmweb link"
+                onChange={e => this.setState({ filmwebUrl: e.target.value })}
+                disabled={!editable}
+              />
+              <FormControl.Feedback />
+            </FormGroup>
+          )
+            : <Button bsStyle="link" className="no-padding"><a href={filmwebUrl}>Filmweb link</a></Button>
           }
         </form>
       </div>
