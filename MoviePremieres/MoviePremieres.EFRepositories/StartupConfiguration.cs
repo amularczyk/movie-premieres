@@ -1,7 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using MoviePremieres.Domain.Repositories;
+using MoviePremieres.Domain.Interfaces;
 using MoviePremieres.EFRepositories.Repositories;
 
 namespace MoviePremieres.EFRepositories

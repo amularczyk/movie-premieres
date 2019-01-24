@@ -2,8 +2,8 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using MoviePremieres.Domain.Interfaces;
 using MoviePremieres.Domain.Models;
+using MoviePremieres.Domain.Services.Interfaces;
 
 namespace MoviePremieres.Controllers
 {

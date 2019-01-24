@@ -3,13 +3,12 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using MoviePremieres.Domain.Models;
 
-namespace MoviePremieres.Domain.Repositories
+namespace MoviePremieres.Domain.Services.Interfaces
 {
-    public interface IMoviesRepository
+    public interface IMoviesService
     {
         Task<IEnumerable<Movie>> GetAll();
         Task Add(Movie movie);
-        Task AddMany(IEnumerable<Movie> movies);
         Task<Movie> GetById(Guid id);
         Task Update(Movie movie);
     }

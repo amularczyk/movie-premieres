@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using AutoMapper;
 using Microsoft.WindowsAzure.Storage.Table;
+using MoviePremieres.Domain.Interfaces;
 using MoviePremieres.Domain.Models;
-using MoviePremieres.Domain.Repositories;
 using MoviePremieres.StorageTableRepositories.Models;
 
 namespace MoviePremieres.StorageTableRepositories.Repositories

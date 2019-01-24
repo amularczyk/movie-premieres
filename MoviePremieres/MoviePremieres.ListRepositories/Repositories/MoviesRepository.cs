@@ -2,8 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using MoviePremieres.Domain.Interfaces;
 using MoviePremieres.Domain.Models;
-using MoviePremieres.Domain.Repositories;
 
 namespace MoviePremieres.ListRepositories.Repositories
 {

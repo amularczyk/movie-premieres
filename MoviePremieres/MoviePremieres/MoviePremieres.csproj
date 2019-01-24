@@ -23,6 +23,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\MoviePremieres.Cache\MoviePremieres.Cache.csproj" />
     <ProjectReference Include="..\MoviePremieres.CosmosDBRepositories\MoviePremieres.CosmosDBRepositories.csproj" />
     <ProjectReference Include="..\MoviePremieres.Domain\MoviePremieres.Domain.csproj" />
     <ProjectReference Include="..\MoviePremieres.EFRepositories\MoviePremieres.EFRepositories.csproj" />

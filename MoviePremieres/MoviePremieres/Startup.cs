@@ -1,4 +1,3 @@
-using System.Collections.Generic;
 using System.Reflection;
 using AutoMapper;
 using Microsoft.AspNetCore.Builder;
@@ -9,10 +8,11 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using MoviePremieres.CosmosDBRepositories.Profiles;
 using MoviePremieres.Domain;
-using MoviePremieres.Domain.Interfaces;
 using MoviePremieres.Domain.Services;
 using MoviePremieres.Filters;
 using MoviePremieres.ListRepositories;
+using MoviePremieres.Cache;
+using MoviePremieres.Domain.Services.Interfaces;
 
 namespace MoviePremieres
 {
@@ -44,7 +44,7 @@ namespace MoviePremieres
         {
             return new[]
             {
-                typeof(StartupConfiguration).GetTypeInfo().Assembly,
+                typeof(ListRepositories.StartupConfiguration).GetTypeInfo().Assembly,
                 typeof(StorageTableRepositories.StartupConfiguration).GetTypeInfo().Assembly
             };
         }
@@ -60,6 +60,8 @@ namespace MoviePremieres
             //services.RegisterEFRepositories(Configuration);
             //services.RegisterAzureStorageRepositories(Configuration);
             //services.RegisterAzureCosmosDBRepositories(Configuration);
+
+            services.RegisterAzureRedisCache(Configuration);
         }
 
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)

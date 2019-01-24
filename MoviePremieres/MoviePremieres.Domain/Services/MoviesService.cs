@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using MoviePremieres.Domain.Interfaces;
 using MoviePremieres.Domain.Models;
-using MoviePremieres.Domain.Repositories;
+using MoviePremieres.Domain.Services.Interfaces;
 
 namespace MoviePremieres.Domain.Services
 {

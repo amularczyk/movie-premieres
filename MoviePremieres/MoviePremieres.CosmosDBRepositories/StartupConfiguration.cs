@@ -3,7 +3,7 @@ using Microsoft.Extensions.DependencyInjection;
 using MongoDB.Driver;
 using MoviePremieres.CosmosDBRepositories.Configs;
 using MoviePremieres.CosmosDBRepositories.Repositories;
-using MoviePremieres.Domain.Repositories;
+using MoviePremieres.Domain.Interfaces;
 
 namespace MoviePremieres.CosmosDBRepositories
 {

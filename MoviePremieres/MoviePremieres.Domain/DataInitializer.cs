@@ -2,8 +2,8 @@
 using System.Collections.Generic;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
+using MoviePremieres.Domain.Interfaces;
 using MoviePremieres.Domain.Models;
-using MoviePremieres.Domain.Repositories;
 
 namespace MoviePremieres.Domain
 {

@@ -7,8 +7,8 @@ using MongoDB.Bson;
 using MongoDB.Driver;
 using MoviePremieres.CosmosDBRepositories.Configs;
 using MoviePremieres.CosmosDBRepositories.Models;
+using MoviePremieres.Domain.Interfaces;
 using MoviePremieres.Domain.Models;
-using MoviePremieres.Domain.Repositories;
 
 namespace MoviePremieres.CosmosDBRepositories.Repositories
 {

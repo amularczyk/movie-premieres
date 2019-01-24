@@ -1,7 +1,7 @@
 ﻿using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.WindowsAzure.Storage;
-using MoviePremieres.Domain.Repositories;
+using MoviePremieres.Domain.Interfaces;
 using MoviePremieres.StorageTableRepositories.Repositories;
 
 namespace MoviePremieres.StorageTableRepositories
