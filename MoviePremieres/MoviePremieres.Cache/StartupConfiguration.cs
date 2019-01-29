@@ -13,7 +13,7 @@ namespace MoviePremieres.Cache
             services.AddTransient<ICacheDatabase, CacheDatabase>();
 
             var cacheConnection = configuration.GetConnectionString("RedisCacheConnection");
-            services.AddScoped(_ => ConnectionMultiplexer.Connect(cacheConnection));
+            services.AddTransient(_ => ConnectionMultiplexer.Connect(cacheConnection));
         }
     }
 }

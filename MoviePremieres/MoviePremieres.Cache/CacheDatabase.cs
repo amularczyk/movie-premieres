@@ -15,11 +15,14 @@ namespace MoviePremieres.Cache
 
         public T Get<T>(string key)
         {
+            var value = default(T);
             var cache = _connectionMultiplexer.GetDatabase();
 
-            var value = JsonConvert.DeserializeObject<T>(cache.StringGet(key));
-
-            _connectionMultiplexer.Dispose();
+            var cachedValue = cache.StringGet(key);
+            if (cachedValue.HasValue)
+            {
+                value = JsonConvert.DeserializeObject<T>(cachedValue);
+            }
 
             return value;
         }
@@ -29,7 +32,10 @@ namespace MoviePremieres.Cache
             var cache = _connectionMultiplexer.GetDatabase();
 
             cache.StringSet(key, JsonConvert.SerializeObject(value));
+        }
 
+        public void Dispose()
+        {
             _connectionMultiplexer.Dispose();
         }
     }
