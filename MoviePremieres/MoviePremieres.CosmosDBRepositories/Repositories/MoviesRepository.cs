@@ -14,20 +14,20 @@ namespace MoviePremieres.CosmosDBRepositories.Repositories
 {
     public class MoviesRepository : IMoviesRepository
     {
-        private readonly AzureCosmosDbConfig _azureCosmosDbConfig;
+        private readonly AzureCosmosDbSettings _azureCosmosDbSettings;
         private readonly string _collectionName = "Movies";
         private readonly IMapper _mapper;
         private readonly MongoClient _mongoClient;
 
         public MoviesRepository(
             MongoClient mongoClient,
-            IOptions<AzureCosmosDbConfig> azureCosmosDbConfig,
+            IOptions<AzureCosmosDbSettings> azureCosmosDbSettings,
             IMapper mapper
         )
         {
             _mongoClient = mongoClient;
             _mapper = mapper;
-            _azureCosmosDbConfig = azureCosmosDbConfig.Value;
+            _azureCosmosDbSettings = azureCosmosDbSettings.Value;
         }
 
         public async Task<IEnumerable<Movie>> GetAll()
@@ -74,7 +74,7 @@ namespace MoviePremieres.CosmosDBRepositories.Repositories
 
         private IMongoCollection<MovieEntity> GetCollection()
         {
-            var database = _mongoClient.GetDatabase(_azureCosmosDbConfig.DbName);
+            var database = _mongoClient.GetDatabase(_azureCosmosDbSettings.DbName);
             var collection = database.GetCollection<MovieEntity>(_collectionName);
             return collection;
         }

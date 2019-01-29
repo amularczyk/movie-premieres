@@ -12,6 +12,7 @@ using MoviePremieres.Domain.Services;
 using MoviePremieres.Filters;
 using MoviePremieres.ListRepositories;
 using MoviePremieres.Cache;
+using MoviePremieres.CosmosDBRepositories;
 using MoviePremieres.Domain.Services.Interfaces;
 
 namespace MoviePremieres
@@ -51,7 +52,7 @@ namespace MoviePremieres
 
         private void RegisterServices(IServiceCollection services)
         {
-            services.AddTransient<IMoviesService, MoviesService>();
+            services.RegisterDomainServices(Configuration);
         }
 
         private void RegisterRepositories(IServiceCollection services)

@@ -1,6 +1,6 @@
 ﻿namespace MoviePremieres.CosmosDBRepositories.Configs
 {
-    public class AzureCosmosDbConfig
+    public class AzureCosmosDbSettings
     {
         public string DbName { get; set; }
     }

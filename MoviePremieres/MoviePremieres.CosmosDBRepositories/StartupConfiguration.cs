@@ -17,7 +17,7 @@ namespace MoviePremieres.CosmosDBRepositories
             var azureStorageConnection = configuration.GetConnectionString("AzureCosmosDBConnection");
             services.AddScoped(_ => new MongoClient(azureStorageConnection));
             
-            services.Configure<AzureCosmosDbConfig>(configuration.GetSection("AzureCosmosDbConfig"));
+            services.Configure<AzureCosmosDbSettings>(configuration.GetSection("AzureCosmosDbSettings"));
         }
     }
 }
