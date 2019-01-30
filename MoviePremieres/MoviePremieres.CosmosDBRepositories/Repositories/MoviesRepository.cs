@@ -14,10 +14,10 @@ namespace MoviePremieres.CosmosDBRepositories.Repositories
 {
     public class MoviesRepository : IMoviesRepository
     {
-        private readonly AzureCosmosDbSettings _azureCosmosDbSettings;
         private readonly string _collectionName = "Movies";
-        private readonly IMapper _mapper;
         private readonly MongoClient _mongoClient;
+        private readonly AzureCosmosDbSettings _azureCosmosDbSettings;
+        private readonly IMapper _mapper;
 
         public MoviesRepository(
             MongoClient mongoClient,
