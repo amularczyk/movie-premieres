@@ -1,15 +1,15 @@
 import React, { Component } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import {
-  Button, FormGroup, ControlLabel, FormControl,
-} from 'react-bootstrap';
+import { Button } from 'react-bootstrap';
+import Form from 'react-bootstrap/Form';
 import 'react-dates/initialize';
 import 'react-dates/lib/css/_datepicker.css';
 import { SingleDatePicker } from 'react-dates';
 import PropTypes from 'prop-types';
 import moment from 'moment';
 import { moviesActions } from '../../store/actions/moviesActions';
+import Title from '../../components/Title/title';
 import './styles.css';
 
 class Movie extends Component {
@@ -113,9 +113,10 @@ class Movie extends Component {
 
     return (
       <div>
-        <h1>{title}</h1>
+        <Title text={title} />
         {!editable && (
           <Button
+            bsStyle="success"
             className="no-left-margin button-margins"
             onClick={this.editMovieOnClick}
           >
@@ -138,20 +139,20 @@ class Movie extends Component {
         )}
 
         <form>
-          <FormGroup controlId="movieTile">
-            <ControlLabel>Title</ControlLabel>
-            <FormControl
+          <Form.Group controlId="movieTile">
+            <Form.Label>Title</Form.Label>
+            <Form.Control
               type="text"
               value={title}
               placeholder="Enter title"
               onChange={e => this.setState({ title: e.target.value })}
               disabled={!editable}
             />
-            <FormControl.Feedback />
-          </FormGroup>
+            <Form.Control.Feedback />
+          </Form.Group>
 
-          <FormGroup controlId="moviePremiereDate">
-            <ControlLabel>Premiere date</ControlLabel>
+          <Form.Group controlId="moviePremiereDate">
+            <Form.Label>Premiere date</Form.Label>
             <div>
               <SingleDatePicker
                 onDateChange={this.onDateChange}
@@ -162,7 +163,7 @@ class Movie extends Component {
                 disabled={!editable}
               />
             </div>
-          </FormGroup>
+          </Form.Group>
 
           {editable && imageUrl && (
             <div>
@@ -171,31 +172,31 @@ class Movie extends Component {
           )}
 
           {editable && (
-            <FormGroup controlId="movieImageUrl">
-              <ControlLabel>Image link</ControlLabel>
-              <FormControl
+            <Form.Group controlId="movieImageUrl">
+              <Form.Label>Image link</Form.Label>
+              <Form.Control
                 type="text"
                 value={imageUrl}
                 placeholder="Enter image link"
                 onChange={e => this.setState({ imageUrl: e.target.value })}
                 disabled={!editable}
               />
-              <FormControl.Feedback />
-            </FormGroup>
+              <Form.Control.Feedback />
+            </Form.Group>
           )}
 
           {editable ? (
-            <FormGroup controlId="movieFilmwebUrl">
-              <ControlLabel>Filmweb link</ControlLabel>
-              <FormControl
+            <Form.Group controlId="movieFilmwebUrl">
+              <Form.Label>Filmweb link</Form.Label>
+              <Form.Control
                 type="text"
                 value={filmwebUrl}
                 placeholder="Enter filmweb link"
                 onChange={e => this.setState({ filmwebUrl: e.target.value })}
                 disabled={!editable}
               />
-              <FormControl.Feedback />
-            </FormGroup>
+              <Form.Control.Feedback />
+            </Form.Group>
           )
             : <Button bsStyle="link" className="no-padding"><a href={filmwebUrl}>Filmweb link</a></Button>
           }

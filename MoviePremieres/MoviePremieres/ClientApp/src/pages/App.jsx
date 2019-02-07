@@ -1,9 +1,9 @@
 ﻿import React, { Component } from 'react';
 import { Route } from 'react-router-dom';
-import Layout from './components/Layout';
-import Movies from './components/Movies';
-import AddNewMovie from './components/AddNewMovie';
-import Movie from './components/Movie';
+import Layout from '../components/Layout';
+import Movies from './Movies';
+import AddNewMovie from './AddNewMovie';
+import Movie from './Movie';
 
 class App extends Component {
   render() {

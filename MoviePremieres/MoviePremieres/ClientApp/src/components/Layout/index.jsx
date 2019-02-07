@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Col, Grid, Row } from 'react-bootstrap';
+import { Col, Container, Row } from 'react-bootstrap';
 import PropTypes from 'prop-types';
 import NavMenu from '../NavMenu';
 
@@ -7,7 +7,7 @@ class Layout extends Component {
   render() {
     const { children } = this.props;
     return (
-      <Grid fluid>
+      <Container fluid>
         <Row>
           <Col sm={3}>
             <NavMenu />
@@ -16,7 +16,7 @@ class Layout extends Component {
             {children}
           </Col>
         </Row>
-      </Grid>
+      </Container>
     );
   }
 }

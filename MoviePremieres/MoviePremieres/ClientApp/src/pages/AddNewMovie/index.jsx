@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import {
-  Button, FormGroup, ControlLabel, FormControl,
-} from 'react-bootstrap';
+import { Button } from 'react-bootstrap';
+import Form from 'react-bootstrap/Form';
 import 'react-dates/initialize';
 import 'react-dates/lib/css/_datepicker.css';
 import { SingleDatePicker } from 'react-dates';
@@ -77,19 +76,19 @@ class AddNewMovie extends Component {
         {imageUrl && <img className="small-image" src={imageUrl} alt="Movie" />}
 
         <form>
-          <FormGroup controlId="addNewMovieTile" validationState={this.getTitleValidationState()}>
-            <ControlLabel>Title</ControlLabel>
-            <FormControl
+          <Form.Group controlId="addNewMovieTile" validationState={this.getTitleValidationState()}>
+            <Form.Label>Title</Form.Label>
+            <Form.Control
               type="text"
               value={title}
               placeholder="Enter title"
               onChange={e => this.setState({ title: e.target.value })}
             />
-            <FormControl.Feedback />
-          </FormGroup>
+            <Form.Control.Feedback />
+          </Form.Group>
 
-          <FormGroup controlId="addNewMoviePremiereDate">
-            <ControlLabel>Premiere date</ControlLabel>
+          <Form.Group controlId="addNewMoviePremiereDate">
+            <Form.Label>Premiere date</Form.Label>
             <div>
               <SingleDatePicker
                 onDateChange={this.onDateChange}
@@ -99,29 +98,29 @@ class AddNewMovie extends Component {
                 isOutsideRange={() => false}
               />
             </div>
-          </FormGroup>
+          </Form.Group>
 
-          <FormGroup controlId="addNewMovieImageUrl">
-            <ControlLabel>Image link</ControlLabel>
-            <FormControl
+          <Form.Group controlId="addNewMovieImageUrl">
+            <Form.Label>Image link</Form.Label>
+            <Form.Control
               type="text"
               value={imageUrl}
               placeholder="Enter image link"
               onChange={e => this.setState({ imageUrl: e.target.value })}
             />
-            <FormControl.Feedback />
-          </FormGroup>
+            <Form.Control.Feedback />
+          </Form.Group>
 
-          <FormGroup controlId="addNewMovieFilmwebUrl">
-            <ControlLabel>Filmweb link</ControlLabel>
-            <FormControl
+          <Form.Group controlId="addNewMovieFilmwebUrl">
+            <Form.Label>Filmweb link</Form.Label>
+            <Form.Control
               type="text"
               value={filmwebUrl}
               placeholder="Enter filmweb link"
               onChange={e => this.setState({ filmwebUrl: e.target.value })}
             />
-            <FormControl.Feedback />
-          </FormGroup>
+            <Form.Control.Feedback />
+          </Form.Group>
         </form>
         <Button className="margin-top" type="submit" onClick={this.addMovie}>Add new movie</Button>
       </div>
