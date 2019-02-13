@@ -8,9 +8,11 @@ import 'react-dates/lib/css/_datepicker.css';
 import { SingleDatePicker } from 'react-dates';
 import PropTypes from 'prop-types';
 import moment from 'moment';
+import styled from 'styled-components';
 import { moviesActions } from '../../store/actions/moviesActions';
 import Title from '../../components/Title/title';
-import './styles.css';
+import EditButton from '../../components/EditButton/editButton';
+import SmallImage from '../../components/SmallImage/smallImage';
 
 class Movie extends Component {
   constructor(props, context) {
@@ -111,31 +113,28 @@ class Movie extends Component {
     } = this.state;
     const { editable } = this.state;
 
+    const ButtonWithoutPadding = styled(Button)`
+      padding: 0;
+    `;
+
+    const Div = styled.div`
+      .DateInput {
+        width: 92px;
+      }
+    `;
+
     return (
       <div>
         <Title text={title} />
-        {!editable && (
-          <Button
-            bsStyle="success"
-            className="no-left-margin button-margins"
-            onClick={this.editMovieOnClick}
-          >
-            {'Edit'}
-          </Button>
-        )}
-        {editable && (
-          <Button
-            className="no-left-margin button-margins"
-            onClick={this.cancelEdit}
-          >
-            {'Cancel'}
-          </Button>
-        ) }
-        {editable && <Button className="button-margins" onClick={this.saveMovie}>Save</Button>}
+        <EditButton
+          editingMode={editable}
+          editOnClick={this.editMovieOnClick}
+          cancelOnClick={this.cancelEdit}
+          saveOnClick={this.saveMovie}
+        />
+
         {!editable && imageUrl && (
-          <div>
-            <img className="small-image margin-bottom-big" src={imageUrl} alt={title} />
-          </div>
+          <SmallImage src={imageUrl} alt={title} bottomMargin={15} />
         )}
 
         <form>
@@ -153,7 +152,7 @@ class Movie extends Component {
 
           <Form.Group controlId="moviePremiereDate">
             <Form.Label>Premiere date</Form.Label>
-            <div>
+            <Div>
               <SingleDatePicker
                 onDateChange={this.onDateChange}
                 date={premiereDate}
@@ -162,13 +161,11 @@ class Movie extends Component {
                 isOutsideRange={() => false}
                 disabled={!editable}
               />
-            </div>
+            </Div>
           </Form.Group>
 
           {editable && imageUrl && (
-            <div>
-              <img className="small-image margin-bottom-medium" src={imageUrl} alt={title} />
-            </div>
+            <SmallImage src={imageUrl} alt={title} bottomMargin={10} />
           )}
 
           {editable && (
@@ -198,7 +195,7 @@ class Movie extends Component {
               <Form.Control.Feedback />
             </Form.Group>
           )
-            : <Button bsStyle="link" className="no-padding"><a href={filmwebUrl}>Filmweb link</a></Button>
+            : <ButtonWithoutPadding variant="link" href={filmwebUrl}>Filmweb link</ButtonWithoutPadding>
           }
         </form>
       </div>

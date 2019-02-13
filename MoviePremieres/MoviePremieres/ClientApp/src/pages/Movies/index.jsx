@@ -5,6 +5,7 @@ import { Table } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { moviesActions } from '../../store/actions/moviesActions';
+import SmallImage from '../../components/SmallImage/smallImage';
 import './styles.css';
 
 class Movies extends Component {
@@ -29,7 +30,7 @@ class Movies extends Component {
           <tbody>
             { movies.map(movie => (
               <tr key={movie.id}>
-                <td><img className="small-image" src={movie.imageUrl} alt={movie.title} /></td>
+                <td><SmallImage src={movie.imageUrl} alt={movie.title} /></td>
                 <td><Link to={`/movie/${movie.id}`}>{movie.title}</Link></td>
                 <td>{new Date(movie.premiereDate).toLocaleDateString('en-GB')}</td>
               </tr>
