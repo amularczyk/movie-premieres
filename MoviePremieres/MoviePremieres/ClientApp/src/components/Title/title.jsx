@@ -4,8 +4,8 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
 class Title extends Component {
-  static goBack() {
-    window.history.back();
+  goBack = () => {
+    window.history.go(-1);
   }
 
   render() {
@@ -35,7 +35,10 @@ class Title extends Component {
       <div>
         {!showBackButton && (
           <Div>
-            <Button onClick={this.goBack} variant="dark">
+            <Button
+              variant="dark"
+              onClick={this.goBack}
+            >
               {'<'}
             </Button>
           </Div>
