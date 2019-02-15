@@ -4,9 +4,10 @@ import { connect } from 'react-redux';
 import { Table } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
+import styled from 'styled-components';
+import Title from '../../components/Title/title';
 import { moviesActions } from '../../store/actions/moviesActions';
 import SmallImage from '../../components/SmallImage/smallImage';
-import './styles.css';
 
 class Movies extends Component {
   componentDidMount() {
@@ -16,17 +17,24 @@ class Movies extends Component {
 
   render() {
     const { movies } = this.props;
+
+    const Header = styled.thead`
+      th {
+        border-top: none;
+      }
+    `;
+
     return (
       <div>
-        <h1>Movies premieres</h1>
+        <Title text="Movies premieres" />
         <Table>
-          <thead>
+          <Header>
             <tr>
               <th />
               <th>Title</th>
               <th>Premiere</th>
             </tr>
-          </thead>
+          </Header>
           <tbody>
             { movies.map(movie => (
               <tr key={movie.id}>

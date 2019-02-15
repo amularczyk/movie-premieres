@@ -125,7 +125,7 @@ class Movie extends Component {
 
     return (
       <div>
-        <Title text={title} />
+        <Title text={title} showBackButton />
         <EditButton
           editingMode={editable}
           editOnClick={this.editMovieOnClick}

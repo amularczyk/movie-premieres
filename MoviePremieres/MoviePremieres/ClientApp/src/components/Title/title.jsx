@@ -33,7 +33,7 @@ class Title extends Component {
 
     return (
       <div>
-        {!showBackButton && (
+        {showBackButton && (
           <Div>
             <Button
               variant="dark"
