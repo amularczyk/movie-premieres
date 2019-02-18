@@ -2,6 +2,12 @@
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
+const Image = styled.img`
+  height: 60px;
+  width: 50px;
+  margin-bottom: ${props => props.bottomMargin}px;
+`;
+
 class SmallImage extends Component {
   static goBack() {
     window.history.back();
@@ -14,14 +20,8 @@ class SmallImage extends Component {
       bottomMargin,
     } = this.props;
 
-    const Image = styled.img`
-      height: 60px;
-      width: 50px;
-      margin-bottom: ${bottomMargin}px;
-    `;
-
     return (
-      <Image src={src} alt={alt} />
+      <Image src={src} alt={alt} bottomMargin={bottomMargin}/>
     );
   }
 }

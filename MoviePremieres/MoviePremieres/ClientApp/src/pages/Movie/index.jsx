@@ -14,6 +14,16 @@ import Title from '../../components/Title/title';
 import EditButton from '../../components/EditButton/editButton';
 import SmallImage from '../../components/SmallImage/smallImage';
 
+const ButtonWithoutPadding = styled(Button)`
+  padding: 0;
+`;
+
+const Div = styled.div`
+  .DateInput {
+    width: 92px;
+  }
+`;
+
 class Movie extends Component {
   constructor(props, context) {
     super(props, context);
@@ -112,16 +122,6 @@ class Movie extends Component {
       filmwebUrl,
     } = this.state;
     const { editable } = this.state;
-
-    const ButtonWithoutPadding = styled(Button)`
-      padding: 0;
-    `;
-
-    const Div = styled.div`
-      .DateInput {
-        width: 92px;
-      }
-    `;
 
     return (
       <div>

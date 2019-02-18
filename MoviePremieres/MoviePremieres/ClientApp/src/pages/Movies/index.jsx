@@ -9,6 +9,12 @@ import Title from '../../components/Title/title';
 import { moviesActions } from '../../store/actions/moviesActions';
 import SmallImage from '../../components/SmallImage/smallImage';
 
+const Header = styled.thead`
+  th {
+    border-top: none;
+  }
+`;
+
 class Movies extends Component {
   componentDidMount() {
     const { requestMovies } = this.props;
@@ -17,12 +23,6 @@ class Movies extends Component {
 
   render() {
     const { movies } = this.props;
-
-    const Header = styled.thead`
-      th {
-        border-top: none;
-      }
-    `;
 
     return (
       <div>

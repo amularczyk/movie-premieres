@@ -3,6 +3,17 @@ import { Button } from 'react-bootstrap';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
+const ButtonWithMargin = styled(Button)`
+  margin-top: 5px;
+  margin-left: 10px;
+  margin-bottom: 15px;
+`;
+
+const ButtonWithHorizontalMargin = styled(Button)`
+  margin-top: 5px;
+  margin-bottom: 15px;
+`;
+
 class EditButton extends Component {
   static goBack() {
     window.history.back();
@@ -15,17 +26,6 @@ class EditButton extends Component {
       cancelOnClick,
       saveOnClick,
     } = this.props;
-
-    const ButtonWithMargin = styled(Button)`
-      margin-top: 5px;
-      margin-left: 10px;
-      margin-bottom: 15px;
-    `;
-
-    const ButtonWithHorizontalMargin = styled(Button)`
-      margin-top: 5px;
-      margin-bottom: 15px;
-    `;
 
     return (
       <div>
