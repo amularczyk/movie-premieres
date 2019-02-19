@@ -3,12 +3,8 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "build-css": "node-sass-chokidar src/ -o src/",
-    "watch-css": "npm run build-css && node-sass-chokidar src/ -o src/ --watch --recursive",
-    "start-js": "react-scripts start",
-    "start": "npm-run-all -p watch-css start-js",
-    "build-js": "react-scripts build",
-    "build": "npm-run-all build-css build-js",
+    "start": "rimraf ./build && react-scripts start",
+    "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject",
     "lint": "eslint --ignore-pattern .gitignore --color --quiet src"
@@ -17,8 +13,6 @@
     "bootstrap": "^4.2.1",
     "history": "^4.7.2",
     "moment": "^2.24.0",
-    "node-sass-chokidar": "^1.3.4",
-    "npm-run-all": "^4.1.5",
     "prop-types": "^15.6.2",
     "react": "^16.7.0",
     "react-bootstrap": "^1.0.0-beta.5",

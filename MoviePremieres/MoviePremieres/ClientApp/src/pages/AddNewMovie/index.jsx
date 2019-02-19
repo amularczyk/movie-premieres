@@ -3,22 +3,15 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { Button } from 'react-bootstrap';
 import Form from 'react-bootstrap/Form';
-import 'react-dates/initialize';
-import 'react-dates/lib/css/_datepicker.css';
-import { SingleDatePicker } from 'react-dates';
 import PropTypes from 'prop-types';
 import moment from 'moment';
 import styled from 'styled-components';
 import { moviesActions } from '../../store/actions/moviesActions';
+import SmallImage from '../../components/SmallImage/smallImage';
+import SingleDatePicker from '../../components/SingleDatePicker/singleDatePicker';
 
 const ButtonWithTopMargin = styled(Button)`
   margin-top: 10px;
-`;
-
-const Div = styled.div`
-  .DateInput {
-    width: 92px;
-  }
 `;
 
 class AddNewMovie extends Component {
@@ -73,7 +66,7 @@ class AddNewMovie extends Component {
     return (
       <div>
         <h1>Add new movie</h1>
-        {imageUrl && <img className="small-image" src={imageUrl} alt="Movie" />}
+        {imageUrl && <SmallImage src={imageUrl} alt={"Movie"} bottomMargin={10}/>}
 
         <form>
           <Form.Group controlId="addNewMovieTile">
@@ -89,15 +82,12 @@ class AddNewMovie extends Component {
 
           <Form.Group controlId="addNewMoviePremiereDate">
             <Form.Label>Premiere date</Form.Label>
-            <Div>
-              <SingleDatePicker
-                onDateChange={this.onDateChange}
-                date={premiereDate}
-                focused={premiereDateFocused}
-                onFocusChange={({ focused }) => this.setState({ premiereDateFocused: focused })}
-                isOutsideRange={() => false}
-              />
-            </Div>
+            <SingleDatePicker
+              onDateChange={this.onDateChange}
+              date={premiereDate}
+              focused={premiereDateFocused}
+              onFocusChange={({ focused }) => this.setState({ premiereDateFocused: focused })}
+            />
           </Form.Group>
 
           <Form.Group controlId="addNewMovieImageUrl">
